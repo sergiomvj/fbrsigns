@@ -31,8 +31,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
   const [conversationStarted, setConversationStarted] = useState(false);
   const [projectSummary, setProjectSummary] = useState<string | null>(null);
   const { toast } = useToast();
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -379,3 +378,5 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
     </Dialog>
   );
 };
+
+
