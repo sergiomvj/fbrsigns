@@ -31,7 +31,9 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
   const [conversationStarted, setConversationStarted] = useState(false);
   const [projectSummary, setProjectSummary] = useState<string | null>(null);
   const { toast } = useToast();
-  
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -50,7 +52,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
   const startConversation = async () => {
     setIsLoading(true);
     setConversationStarted(true);
-    
+
     try {
       const { data, error } = await supabase.functions.invoke('ai-project-assistant', {
         body: {
@@ -158,7 +160,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
       if (error) throw error;
 
       setProjectSummary(data.message);
-      
+
       toast({
         title: t('aiAssistant.summary.summaryGenerated'),
         description: t('aiAssistant.summary.summaryDescription'),
@@ -192,7 +194,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl h-[80vh] flex flex-col p-0">
-        
+
         <DialogHeader className="p-6 pb-4 border-b border-border">
           <DialogTitle className="flex items-center justify-center gap-3 text-2xl">
             <div className="p-2 rounded-xl bg-gradient-primary flex items-center justify-center">
@@ -222,7 +224,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                       {t('aiAssistant.welcome.description')}
                     </p>
                   </div>
-                  
+
                   <GlassCard className="p-6 mb-6">
                     <h4 className="font-semibold mb-3">{t('aiAssistant.welcome.helpDefine')}</h4>
                     <div className="grid md:grid-cols-2 gap-3 text-sm text-muted-foreground">
@@ -245,7 +247,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                     </div>
                   </GlassCard>
 
-                  <Button 
+                  <Button
                     onClick={startConversation}
                     disabled={isLoading}
                     size="lg"
@@ -277,13 +279,13 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                   <h3 className="text-2xl font-semibold mb-2">{t('aiAssistant.summary.title')}</h3>
                   <p className="text-muted-foreground">{t('aiAssistant.summary.description')}</p>
                 </div>
-                
+
                 <GlassCard className="p-6 mb-6">
                   <div className="prose prose-sm max-w-none">
                     <div className="whitespace-pre-wrap">{projectSummary}</div>
                   </div>
                 </GlassCard>
-                
+
                 <div className="flex gap-3 justify-end">
                   <Button variant="outline" onClick={resetConversation}>
                     {t('aiAssistant.summary.startOver')}
@@ -305,11 +307,10 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                       className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div className={`flex gap-3 max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                          message.role === 'user' 
-                            ? 'bg-primary text-primary-foreground' 
+                        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${message.role === 'user'
+                            ? 'bg-primary text-primary-foreground'
                             : 'bg-gradient-primary'
-                        }`}>
+                          }`}>
                           {message.role === 'user' ? (
                             <User className="h-4 w-4" />
                           ) : (
@@ -342,7 +343,7 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                   )}
                 </div>
               </ScrollArea>
-              
+
               <div className="border-t border-border p-6">
                 <div className="flex gap-3">
                   <Input
@@ -358,11 +359,11 @@ export const AIProjectAssistant: React.FC<AIProjectAssistantProps> = ({
                     <Send className="h-4 w-4" />
                   </Button>
                 </div>
-                
+
                 {messages.length >= 4 && !projectSummary && (
                   <div className="mt-4 text-center">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       onClick={generateProjectSummary}
                       disabled={isLoading}
                     >
