@@ -222,7 +222,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
           payment_method: data.paymentMethod,
           shipping_address: shippingAddress,
           notes: data.notes || '',
-          status: 'Pendente'
+          status: 'Novo'
         })
         .select()
         .single();
