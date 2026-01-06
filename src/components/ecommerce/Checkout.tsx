@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, CreditCard, MapPin, User, Mail, Phone, Building, LogIn, UserPlus } from 'lucide-react';
+import { ArrowLeft, CreditCard, MapPin, User, Mail, Phone, Building, LogIn, UserPlus, Trash2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -174,6 +174,34 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(price);
   };
 
+  const handleDeleteAllOrders = async () => {
+    if (!confirm('Are you sure you want to delete ALL your orders? This cannot be undone.')) return;
+    
+    setIsSubmitting(true);
+    try {
+      const { error } = await supabase
+        .from('orders')
+        .delete()
+        .neq('id', '00000000-0000-0000-0000-000000000000'); // Delete all rows
+
+      if (error) throw error;
+
+      toast({
+        title: "All orders deleted",
+        description: "Your order history has been cleared.",
+      });
+    } catch (error: any) {
+      console.error('Delete error:', error);
+      toast({
+        title: "Error deleting orders",
+        description: error.message,
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const onSubmit = async (data: CheckoutForm) => {
     if (state.items.length === 0) {
       toast({
@@ -325,12 +353,21 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 pt-4 border-t border-border/50">
+                  <div className="mt-4 pt-4 border-t border-border/50 flex justify-between items-center">
                     <button
                       onClick={() => supabase.auth.signOut()}
                       className="text-sm text-muted-foreground hover:text-foreground"
                     >
                       {t('shop.checkout.signOutGuest')}
+                    </button>
+                    
+                    <button
+                      type="button"
+                      onClick={handleDeleteAllOrders}
+                      className="text-sm text-destructive hover:text-destructive/80 flex items-center gap-1"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      Delete All Orders (Dev)
                     </button>
                   </div>
                 </div>
