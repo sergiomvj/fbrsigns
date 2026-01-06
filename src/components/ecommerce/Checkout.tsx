@@ -246,7 +246,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
           customer_name: customer?.full_name || (authUser.user_metadata?.full_name as string | undefined) || authUser.email,
           customer_email: authUser.email, // Must match auth.users.email for RLS
           customer_phone: customer?.phone || customer?.phone_number,
-          total: state.total,
+          // total: state.total, // Removed because it's a generated column
           payment_method: data.paymentMethod,
           shipping_address: shippingAddress,
           notes: data.notes || '',

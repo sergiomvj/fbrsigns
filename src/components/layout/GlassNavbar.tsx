@@ -21,7 +21,7 @@ const getNavigation = (t: any): NavigationItem[] => [
   { name: t('navigation:menu.home'), href: "/" },
   { name: t('navigation:menu.ecommerce'), href: "/ecommerce" },
   { name: t('navigation:menu.services'), href: "/services" },
-  { name: t('navigation:menu.portfolio'), href: "/portfolio" },
+  // { name: t('navigation:menu.portfolio'), href: "/portfolio" },
   { name: t('navigation:menu.about'), href: "/about" },
   { name: t('navigation:menu.contact'), href: "/contact" },
   { name: 'FBRSIGNS.shop', href: "https://fbrsigns.quotearea.com/", external: true },
