@@ -263,7 +263,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
         name: item.name,
         quantity: item.quantity,
         price: item.price,
-        total: item.price * item.quantity
+        // total: item.price * item.quantity // Removed because it's a generated column
       }));
 
       const { error: itemsError } = await supabase
