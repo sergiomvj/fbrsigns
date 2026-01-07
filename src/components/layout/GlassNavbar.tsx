@@ -147,13 +147,22 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
               )}
             </Button>
 
-            {/* Login Button */}
-            <LoginDialog>
-              <GlassButton variant="outline" size="sm">
-                <User className="h-4 w-4 mr-2" />
-                {t('common:buttons.login')}
-              </GlassButton>
-            </LoginDialog>
+            {/* Login Button / Dashboard */}
+            {user ? (
+              <Link to="/dashboard">
+                <GlassButton variant="outline" size="sm">
+                  <User className="h-4 w-4 mr-2" />
+                  My FBRSigns
+                </GlassButton>
+              </Link>
+            ) : (
+              <LoginDialog>
+                <GlassButton variant="outline" size="sm">
+                  <User className="h-4 w-4 mr-2" />
+                  {t('common:buttons.login')}
+                </GlassButton>
+              </LoginDialog>
+            )}
 
             <Link to="/quote-request">
               <GlassButton variant="default" size="sm">
