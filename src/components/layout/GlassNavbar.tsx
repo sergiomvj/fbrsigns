@@ -10,6 +10,7 @@ import { useCart } from "@/hooks/useCart";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { cn } from "@/lib/utils";
 import fbrSignsLogo from "@/assets/fbrsigns-logo.png";
+import { supabase } from "@/integrations/supabase/client";
 
 interface NavigationItem {
   name: string;
@@ -37,15 +38,30 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const { state } = useCart();
+  const [user, setUser] = useState<any>(null);
 
   const navigation = getNavigation(t);
 
   useEffect(() => {
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+
+    // Listen for changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      subscription.unsubscribe();
+    };
   }, []);
 
   const isActive = (href: string) => location.pathname === href;
@@ -222,13 +238,22 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
                 )}
               </Button>
 
-              {/* Mobile Login */}
-              <LoginDialog>
-                <GlassButton variant="outline" className="w-full" size="lg">
-                  <User className="h-4 w-4 mr-2" />
-                  {t('common:buttons.login')}
-                </GlassButton>
-              </LoginDialog>
+              {/* Mobile Login / Dashboard */}
+              {user ? (
+                <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                  <GlassButton variant="outline" className="w-full" size="lg">
+                    <User className="h-4 w-4 mr-2" />
+                    My FBRSigns
+                  </GlassButton>
+                </Link>
+              ) : (
+                <LoginDialog>
+                  <GlassButton variant="outline" className="w-full" size="lg">
+                    <User className="h-4 w-4 mr-2" />
+                    {t('common:buttons.login')}
+                  </GlassButton>
+                </LoginDialog>
+              )}
 
               <Link to="/quote-request" onClick={() => setIsOpen(false)}>
                 <GlassButton variant="default" className="w-full" size="lg">
