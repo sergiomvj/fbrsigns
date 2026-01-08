@@ -218,30 +218,6 @@
     }
   },
   "about": {
-    "title": "Nuestros Servicios",
-    "subtitle": "Soluciones integrales de señalización para todas las necesidades empresariales",
-    "digitalSigns": {
-      "title": "Letreros LED Digitales",
-      "description": "Pantallas digitales llamativas que capturan la atención y aumentan el tráfico peatonal"
-    },
-    "illuminatedSigns": {
-      "title": "Letreros Iluminados",
-      "description": "Soluciones de iluminación brillantes y profesionales que hacen tu negocio visible las 24 horas"
-    },
-    "vehicleWraps": {
-      "title": "Vinilado de Vehículos",
-      "description": "Publicidad móvil que convierte tus vehículos en poderosas herramientas de marketing"
-    },
-    "storefrontSigns": {
-      "title": "Letreros de Fachada",
-      "description": "Señalización profesional de fachada que establece la presencia de tu marca"
-    },
-    "tradeShowDisplays": {
-      "title": "Displays para Ferias",
-      "description": "Displays portátiles e impactantes que hacen destacar tu stand en eventos"
-    }
-  },
-  "about": {
     "title": "Acerca de FBR Signs",
     "subtitle": "Su socio confiable en soluciones de señalización profesional",
     "description": "Con más de 20 años de experiencia en la industria de señalización, FBR Signs se ha establecido como proveedor premium de soluciones de señalización personalizadas. Combinamos artesanía tradicional con tecnología de punta para entregar resultados excepcionales.",
@@ -588,11 +564,6 @@
       "sendFailed": "Error al enviar mensaje. Inténtalo de nuevo.",
       "summaryFailed": "Error al generar resumen del proyecto. Inténtalo de nuevo."
     }
-  },
-  "ecommerce": {
-    "orderPlaced": "¡Pedido Realizado con Éxito!",
-    "orderConfirmation": "Gracias por su pedido. Le enviaremos un email de confirmación con detalles de seguimiento pronto.",
-    "continueShopping": "Continuar Comprando"
   },
   "shop": {
     "title": "Nuestros <span class='text-gradient'>Productos</span>",

@@ -218,30 +218,6 @@
     }
   },
   "about": {
-    "title": "Nossos Serviços",
-    "subtitle": "Soluções completas de sinalização para todas as necessidades empresariais",
-    "digitalSigns": {
-      "title": "Placas LED Digitais",
-      "description": "Displays digitais atraentes que capturam atenção e aumentam o fluxo de clientes"
-    },
-    "illuminatedSigns": {
-      "title": "Placas Iluminadas",
-      "description": "Soluções de iluminação brilhantes e profissionais que tornam seu negócio visível 24/7"
-    },
-    "vehicleWraps": {
-      "title": "Adesivação de Veículos",
-      "description": "Publicidade móvel que transforma seus veículos em poderosas ferramentas de marketing"
-    },
-    "storefrontSigns": {
-      "title": "Placas de Fachada",
-      "description": "Sinalização profissional de fachada que estabelece a presença da sua marca"
-    },
-    "tradeShowDisplays": {
-      "title": "Displays para Feiras",
-      "description": "Displays portáteis e impactantes que fazem seu estande se destacar em eventos"
-    }
-  },
-  "about": {
     "title": "Sobre FBR Signs",
     "subtitle": "Seu parceiro confiável em soluções de sinalização profissional",
     "description": "Com mais de 20 anos de experiência na indústria de sinalização, a FBR Signs se estabeleceu como provedora premium de soluções de sinalização personalizadas. Combinamos artesanato tradicional com tecnologia de ponta para entregar resultados excepcionais.",
@@ -589,11 +565,7 @@
       "summaryFailed": "Falha ao gerar resumo do projeto. Tente novamente."
     }
   },
-  "ecommerce": {
-    "orderPlaced": "Pedido Realizado com Sucesso!",
-    "orderConfirmation": "Obrigado pelo seu pedido. Enviaremos um email de confirmação com detalhes de rastreamento em breve.",
-    "continueShopping": "Continuar Comprando"
-  },
+
   "shop": {
     "title": "Nossos <span class='text-gradient'>Produtos</span>",
     "subtitle": "Descubra nossa linha de soluções profissionais de sinalização.",

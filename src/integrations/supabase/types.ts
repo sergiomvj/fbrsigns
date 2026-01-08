@@ -1172,6 +1172,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: string
       }
+      get_stripe_publishable_key: {
+        Args: Record<PropertyKey, never>
+        Returns: string
+      }
       is_admin: {
         Args: { user_uuid?: string }
         Returns: boolean

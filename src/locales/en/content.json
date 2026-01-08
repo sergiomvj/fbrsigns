@@ -69,55 +69,7 @@
     "viewDetails": "View Details",
     "viewAllProducts": "View All Products"
   },
-  "about": {
-    "title": "About FBRSigns",
-    "subtitle": "For over 15 years, we've been transforming visions into stunning visual communication solutions that help businesses stand out and succeed.",
-    "story": {
-      "title": "Our Story",
-      "content1": "Founded in 2009 by Sarah Johnson, FBRSigns began with a simple mission: to help businesses communicate their message through exceptional visual signage. What started as a small operation has grown into a leading signage company serving clients across the region.",
-      "content2": "Our journey has been marked by continuous innovation, from embracing digital signage technologies to implementing sustainable practices. We've completed over 10,000 projects, but what we're most proud of is the lasting relationships we've built with our clients.",
-      "content3": "Today, our team of 50+ professionals combines decades of experience with cutting-edge technology to deliver signage solutions that not only look amazing but drive real business results."
-    },
-    "values": {
-      "title": "Our Values",
-      "subtitle": "These core values guide everything we do and shape the way we work with our clients and each other.",
-      "excellence": {
-        "title": "Excellence",
-        "description": "We strive for perfection in every project, from design concept to final installation."
-      },
-      "customerFocus": {
-        "title": "Customer Focus", 
-        "description": "Our clients' success is our success. We build lasting relationships through exceptional service."
-      },
-      "innovation": {
-        "title": "Innovation",
-        "description": "We embrace new technologies and creative solutions to stay ahead of industry trends."
-      },
-      "teamwork": {
-        "title": "Teamwork",
-        "description": "Our collaborative approach ensures every project benefits from our collective expertise."
-      }
-    },
-    "team": {
-      "title": "Meet Our Team",
-      "subtitle": "The talented professionals behind every successful project. Our team combines expertise, creativity, and dedication."
-    },
-    "journey": {
-      "title": "Our Journey",
-      "subtitle": "Key milestones that have shaped our company and defined our success."
-    },
-    "contact": {
-      "visitUs": "Visit Us",
-      "callUs": "Call Us", 
-      "emailUs": "Email Us"
-    },
-    "cta": {
-      "title": "Ready to Work Together?",
-      "subtitle": "Let's discuss your project and see how our experience and expertise can help bring your vision to life.",
-      "button": "Start Your Project",
-      "portfolio": "View Our Portfolio"
-    }
-  },
+
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Ready to transform your vision into reality? Contact us today for a free consultation and let's discuss your signage needs.",
@@ -667,11 +619,6 @@
       "sendFailed": "Failed to send message. Please try again.",
       "summaryFailed": "Failed to generate project summary. Please try again."
     }
-  },
-  "ecommerce": {
-    "orderPlaced": "Order Successfully Placed!",
-    "orderConfirmation": "Thank you for your order. We'll send you a confirmation email with tracking details shortly.",
-    "continueShopping": "Continue Shopping"
   },
   "shop": {
     "title": "Our <span class='text-gradient'>Products</span>",
