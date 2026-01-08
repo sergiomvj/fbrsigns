@@ -724,7 +724,7 @@
         "validEmailRequired": "Por favor, insira um endereço de email válido"
       },
       "paymentOptions": {
-        "creditCard": "Cartão de Crédito (Modo de Teste)",
+        "creditCard": "Cartão de Crédito",
         "paypal": "PayPal"
       },
       "sections": {
