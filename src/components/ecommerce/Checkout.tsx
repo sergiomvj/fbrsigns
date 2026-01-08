@@ -22,7 +22,7 @@ const getCheckoutSchema = (t: any) => z.object({
   street: z.string().min(5, t('shop.checkout.validation.streetRequired')),
   number: z.string().min(1, t('shop.checkout.validation.numberRequired')),
   complement: z.string().optional(),
-  neighborhood: z.string().min(2, t('shop.checkout.validation.neighborhoodRequired')),
+  neighborhood: z.string().optional(),
   city: z.string().min(2, t('shop.checkout.validation.cityRequired')),
   state: z.string().min(2, t('shop.checkout.validation.stateRequired')),
   zipCode: z.string().min(5, t('shop.checkout.validation.zipCodeRequired')),
@@ -462,7 +462,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                         name="neighborhood"
                         render={({ field }) => (
                         <FormItem>
-                          <FormLabel>{t('shop.checkout.neighborhood')} *</FormLabel>
+                          <FormLabel>{t('shop.checkout.neighborhood')}</FormLabel>
                           <FormControl>
                             <Input {...field} className="glass-input" />
                           </FormControl>
@@ -599,6 +599,13 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                                   className="glass-input" 
                                   placeholder={t('shop.checkout.placeholders.expiryDate')}
                                   maxLength={5}
+                                  onChange={(e) => {
+                                    let value = e.target.value.replace(/\D/g, '');
+                                    if (value.length >= 2) {
+                                      value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                                    }
+                                    field.onChange(value);
+                                  }}
                                 />
                               </FormControl>
                               <FormMessage />
