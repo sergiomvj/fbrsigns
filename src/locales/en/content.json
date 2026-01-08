@@ -811,8 +811,7 @@
         "paypalInfo": "PayPal Information"
       },
       "paypalEmail": "PayPal Email Address",
-      "paypalRedirect": "You will be redirected to PayPal to complete your payment securely.",
-      "testModeHint": "Test Mode: Use card 4242 4242 4242 4242, any name, any future date, CVV 123."
+      "paypalRedirect": "You will be redirected to PayPal to complete your payment securely."
     }
   }
 }

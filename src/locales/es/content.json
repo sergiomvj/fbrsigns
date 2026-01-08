@@ -732,8 +732,7 @@
         "paypalInfo": "Información de PayPal"
       },
       "paypalEmail": "Email de PayPal",
-      "paypalRedirect": "Serás redirigido a PayPal para completar tu pago de forma segura.",
-      "testModeHint": "Modo de prueba: Use la tarjeta 4242 4242 4242 4242, cualquier nombre, fecha futura, CVV 123."
+      "paypalRedirect": "Serás redirigido a PayPal para completar tu pago de forma segura."
     }
   }
 }
