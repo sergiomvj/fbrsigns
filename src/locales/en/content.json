@@ -803,7 +803,7 @@
         "validEmailRequired": "Please enter a valid email address"
       },
       "paymentOptions": {
-        "creditCard": "Credit Card (Test Mode)",
+        "creditCard": "Credit Card",
         "paypal": "PayPal"
       },
       "sections": {
