@@ -2,20 +2,18 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const getStripePublishableKey = async (): Promise<string | null> => {
   try {
-    const { data, error } = await supabase
-      .from("integrations")
-      .select("config")
-      .eq("provider", "stripe")
-      .eq("is_active", true)
-      .single();
+    const { data, error } = await supabase.functions.invoke("create-payment-intent", {
+      body: { 
+        _action: 'get_publishable_key' 
+      },
+    });
 
     if (error) {
       console.error("Error fetching Stripe key:", error);
       return null;
     }
 
-    const config = data?.config as { publishable_key: string } | null;
-    return config?.publishable_key || null;
+    return data?.publishableKey || null;
   } catch (error) {
     console.error("Error in getStripePublishableKey:", error);
     return null;
