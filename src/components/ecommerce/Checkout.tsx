@@ -16,6 +16,9 @@ import { toast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { LoginDialog } from '@/components/auth/LoginDialog';
 import { useTranslation } from 'react-i18next';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { getStripePublishableKey, createPaymentIntent } from "@/services/stripe";
 
 const getCheckoutSchema = (t: any) => z.object({
   // Shipping Address
@@ -30,48 +33,13 @@ const getCheckoutSchema = (t: any) => z.object({
   // Payment
   paymentMethod: z.enum(['credit_card', 'paypal']),
   
-  // Credit Card fields (conditional)
-  cardNumber: z.string().optional(),
-  cardName: z.string().optional(),
-  cardExpiry: z.string().optional(),
-  cardCvv: z.string().optional(),
-  
   // PayPal fields (conditional)
   paypalEmail: z.string().optional(),
   
   // Additional
   notes: z.string().optional()
 }).superRefine((data, ctx) => {
-  if (data.paymentMethod === 'credit_card') {
-    if (!data.cardNumber || data.cardNumber.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: t('shop.checkout.validation.cardNumberRequired'),
-        path: ["cardNumber"]
-      });
-    }
-    if (!data.cardName || data.cardName.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: t('shop.checkout.validation.cardholderRequired'),
-        path: ["cardName"]
-      });
-    }
-    if (!data.cardExpiry || data.cardExpiry.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: t('shop.checkout.validation.expiryRequired'),
-        path: ["cardExpiry"]
-      });
-    }
-    if (!data.cardCvv || data.cardCvv.trim() === '') {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: t('shop.checkout.validation.cvvRequired'),
-        path: ["cardCvv"]
-      });
-    }
-  }
+  // Stripe Elements handles card validation internally
   
   if (data.paymentMethod === 'paypal') {
     if (!data.paypalEmail || data.paypalEmail.trim() === '') {
@@ -97,9 +65,11 @@ interface CheckoutProps {
   onSuccess: () => void;
 }
 
-export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
+const CheckoutContent: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
   const { state, clearCart } = useCart();
   const { t, i18n } = useTranslation('content');
+  const stripe = useStripe();
+  const elements = useElements();
   
   const checkoutSchema = getCheckoutSchema(t);
   
@@ -159,10 +129,6 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
       zipCode: '',
       // Payment
       paymentMethod: 'credit_card',
-      cardNumber: '',
-      cardName: '',
-      cardExpiry: '',
-      cardCvv: '',
       paypalEmail: '',
       // Additional
       notes: ''
@@ -263,7 +229,6 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
         name: item.name,
         quantity: item.quantity,
         price: item.price,
-        // total: item.price * item.quantity // Removed because it's a generated column
       }));
 
       const { error: itemsError } = await supabase
@@ -271,6 +236,36 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
         .insert(orderItems);
 
       if (itemsError) throw itemsError;
+
+      // Handle Stripe Payment
+      if (data.paymentMethod === 'credit_card' && stripe && elements) {
+        const { error: stripeError } = await stripe.confirmPayment({
+          elements,
+          confirmParams: {
+            return_url: window.location.origin + '/order-confirmation/' + order.id,
+            payment_method_data: {
+              billing_details: {
+                name: customer?.full_name || authUser.email,
+                email: authUser.email,
+                phone: customer?.phone,
+                address: {
+                  line1: shippingAddress.street + ' ' + shippingAddress.number,
+                  line2: shippingAddress.complement,
+                  city: shippingAddress.city,
+                  state: shippingAddress.state,
+                  postal_code: shippingAddress.zipCode,
+                  country: 'US', // Adjust if needed
+                }
+              }
+            }
+          },
+          redirect: 'if_required',
+        });
+
+        if (stripeError) {
+          throw new Error(stripeError.message);
+        }
+      }
 
       // Clear cart and show success
       clearCart();
@@ -553,88 +548,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                   {form.watch('paymentMethod') === 'credit_card' && (
                     <div className="mt-6 pt-6 border-t border-border/50">
                       <h3 className="text-lg font-medium mb-4">{t('shop.checkout.sections.creditCardInfo')}</h3>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="cardNumber"
-                          render={({ field }) => (
-                            <FormItem className="md:col-span-2">
-                              <FormLabel>{t('shop.checkout.cardNumber')} *</FormLabel>
-                              <FormControl>
-                                <Input 
-                                  {...field} 
-                                  className="glass-input" 
-                                  placeholder={t('shop.checkout.placeholders.cardNumber')}
-                                  maxLength={19}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="cardName"
-                          render={({ field }) => (
-                            <FormItem className="md:col-span-2">
-                              <FormLabel>{t('shop.checkout.cardholderName')} *</FormLabel>
-                              <FormControl>
-                                <Input {...field} className="glass-input" placeholder={t('shop.checkout.placeholders.cardholderName')} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="cardExpiry"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>{t('shop.checkout.expiryDate')} *</FormLabel>
-                              <FormControl>
-                                <Input 
-                                  {...field} 
-                                  className="glass-input" 
-                                  placeholder={t('shop.checkout.placeholders.expiryDate')}
-                                  maxLength={5}
-                                  onChange={(e) => {
-                                    let value = e.target.value.replace(/\D/g, '');
-                                    if (value.length >= 2) {
-                                      value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                                    }
-                                    field.onChange(value);
-                                  }}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        
-                        <FormField
-                          control={form.control}
-                          name="cardCvv"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>{t('shop.checkout.cvv')} *</FormLabel>
-                              <FormControl>
-                                <Input 
-                                  {...field} 
-                                  className="glass-input" 
-                                  placeholder={t('shop.checkout.placeholders.cvv')}
-                                  maxLength={4}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-4">
-                        {t('shop.checkout.testModeHint')}
-                      </p>
+                      <PaymentElement />
                     </div>
                   )}
                   
@@ -754,6 +668,63 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
             </GlassCard>
           </div>
         </div>
-      </div>
+    </div>
+  );
+};
+
+export const Checkout: React.FC<CheckoutProps> = (props) => {
+  const [stripePromise, setStripePromise] = useState<any>(null);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const { state } = useCart();
+
+  useEffect(() => {
+    const initializeStripe = async () => {
+      const publishableKey = await getStripePublishableKey();
+      if (publishableKey) {
+        setStripePromise(loadStripe(publishableKey));
+      }
+    };
+    initializeStripe();
+  }, []);
+
+  useEffect(() => {
+    const fetchClientSecret = async () => {
+      if (state.total > 0) {
+        try {
+          // We create a PaymentIntent for the total amount
+          const response = await createPaymentIntent(state.total);
+          if (response?.clientSecret) {
+            setClientSecret(response.clientSecret);
+          }
+        } catch (error) {
+          console.error("Failed to init payment intent", error);
+        }
+      }
+    };
+    
+    // Debounce or just call it. For now, calling it when total changes is fine.
+    // If total is 0, we don't need payment element.
+    fetchClientSecret();
+  }, [state.total]);
+
+  if (state.items.length === 0) {
+    return <CheckoutContent {...props} />;
+  }
+
+  // If we have stripe and secret, wrap it.
+  // If we are still loading, maybe show a loader, or render without Elements (and disable payment)
+  if (stripePromise && clientSecret) {
+    return (
+      <Elements stripe={stripePromise} options={{ clientSecret }}>
+        <CheckoutContent {...props} />
+      </Elements>
+    );
+  }
+
+  // Fallback while loading Stripe
+  return (
+    <div className="flex justify-center items-center h-96">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+    </div>
   );
 };
