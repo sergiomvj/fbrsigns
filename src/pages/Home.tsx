@@ -354,7 +354,7 @@ export default function Home() {
         variant="hero"
         size="xl"
         onClick={() => setShowAIAssistant(true)}
-        className="fixed bottom-6 right-6 z-[100]"
+        className="hidden md:inline-flex fixed bottom-6 right-6 z-[100]"
         aria-label="Start your project"
       >
         <Sparkles className="h-5 w-5 mr-2" />
