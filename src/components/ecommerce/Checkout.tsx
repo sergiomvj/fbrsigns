@@ -57,6 +57,7 @@ const CheckoutContent: React.FC<CheckoutProps & { clientSecret: string }> = ({ o
 
   // Auth check
   useEffect(() => {
+    // Initial check
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user);
       if (user) {
@@ -64,6 +65,23 @@ const CheckoutContent: React.FC<CheckoutProps & { clientSecret: string }> = ({ o
           .then(({ data }) => setCustomer(data));
       }
     });
+
+    // Listen for auth changes (login/logout)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      const currentUser = session?.user ?? null;
+      setUser(currentUser);
+      
+      if (currentUser) {
+        supabase.from('customers').select('*').eq('user_id', currentUser.id).maybeSingle()
+          .then(({ data }) => setCustomer(data));
+      } else {
+        setCustomer(null);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   const form = useForm<CheckoutForm>({
