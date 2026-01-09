@@ -20,6 +20,12 @@ RUN npm ci --include=dev --legacy-peer-deps
 # Copy source code
 COPY . .
 
+# Declare build arguments
+ARG VITE_SUPABASE_PROJECT_ID
+ARG VITE_SUPABASE_PUBLISHABLE_KEY
+ARG VITE_SUPABASE_URL
+ARG VITE_STRIPE_PUBLISHABLE_KEY
+
 # Build the application
 RUN npm run build
 
