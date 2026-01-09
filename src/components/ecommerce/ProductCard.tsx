@@ -82,6 +82,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </Badge>
         )}
 
+        {/* Options Available Badge */}
+        {hasOptions && (
+          <Badge 
+            variant="default" 
+            className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs"
+          >
+            Options Available (Colors / Sizes)
+          </Badge>
+        )}
+
         {/* Rating - Hidden on small screens */}
         <div className="absolute top-2 right-2 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1">
           {[1, 2, 3, 4, 5].map((star) => (
