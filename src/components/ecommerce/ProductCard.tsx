@@ -38,7 +38,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(price);
   };
 
+  const hasOptions = product.has_sizes || product.has_colors;
+
   const handleAddToCart = () => {
+    if (hasOptions && onViewDetails) {
+      onViewDetails();
+      return;
+    }
+
     addItem({
       id: product.id,
       name: product.name,
