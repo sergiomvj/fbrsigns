@@ -172,7 +172,30 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative mr-1"
+              onClick={() => {
+                if (onCartOpen) {
+                  onCartOpen();
+                } else {
+                  window.location.href = '/ecommerce';
+                }
+              }}
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {state.itemCount > 0 && (
+                <Badge
+                  variant="destructive"
+                  className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px]"
+                >
+                  {state.itemCount > 99 ? '99+' : state.itemCount}
+                </Badge>
+              )}
+            </Button>
+
             <GlassButton
               variant="ghost"
               size="icon"
@@ -219,33 +242,10 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
               )
             ))}
             <div className="pt-4 space-y-3">
-              {/* Mobile Cart */}
               {/* Mobile Language Selector */}
               <div className="flex justify-center">
                 <LanguageSelector />
               </div>
-
-              <Button
-                variant="outline"
-                className="w-full justify-center"
-                size="lg"
-                onClick={() => {
-                  setIsOpen(false);
-                  if (onCartOpen) {
-                    onCartOpen();
-                  } else {
-                    window.location.href = '/ecommerce';
-                  }
-                }}
-              >
-                <ShoppingCart className="h-4 w-4 mr-2" />
-                {t('navigation:menu.ecommerce')}
-                {state.itemCount > 0 && (
-                  <Badge variant="destructive" className="ml-2">
-                    {state.itemCount}
-                  </Badge>
-                )}
-              </Button>
 
               {/* Mobile Login / Dashboard */}
               {user ? (
