@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ShoppingCart, Star, Info, Truck, Shield, Award } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { PageLayout } from '@/components/layout/PageLayout';
@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useTranslation } from 'react-i18next';
+import { supabase } from "@/integrations/supabase/client";
 import {
   Table,
   TableBody,
@@ -56,13 +57,43 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(product.min_quantity || 1);
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [variants, setVariants] = useState<any[]>([]);
+  const [selectedColor, setSelectedColor] = useState<string>("");
+
+  useEffect(() => {
+    if (product?.id) {
+      const fetchVariants = async () => {
+        const { data, error } = await supabase
+          .from('product_variants')
+          .select('*')
+          .eq('product_id', product.id);
+        
+        if (data) {
+          setVariants(data);
+        }
+      };
+      fetchVariants();
+    }
+  }, [product]);
+
+  const availableSizes = Array.from(new Set(variants.filter(v => v.size).map(v => v.size)));
+  const availableColors = Array.from(new Set(variants.filter(v => v.color).map(v => v.color)));
+  
+  const selectedVariant = variants.find(v => 
+    (!v.size || v.size === selectedSize) && 
+    (!v.color || v.color === selectedColor)
+  );
+
+  const currentPrice = selectedVariant 
+    ? Number(product.price) + Number(selectedVariant.additional_price || 0)
+    : Number(product.price);
 
   const formatPrice = (price: number) => {
     const locale = i18n.language === 'pt' ? 'pt-BR' : i18n.language === 'es' ? 'es-ES' : 'en-US';
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(price);
   };
 
-  const isWearCategory = product.category?.toLowerCase().includes("wear");
+  const isWearCategory = product.category?.toLowerCase().includes("wear") || variants.some(v => v.size);
 
   const allImages = [
     product.image_url || "/placeholder.svg",
@@ -182,8 +213,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
               </div>
             </div>
 
-            {/* Size Selector for Wear Category */}
-            {isWearCategory && (
+            {/* Size Selector for Wear Category or if variants exist */}
+            {(isWearCategory || availableSizes.length > 0) && (
               <GlassCard className="p-4">
                 <label className="text-sm font-medium mb-2 block">{t('shop.productDetails.size') || "Size"}:</label>
                 <Select value={selectedSize} onValueChange={setSelectedSize}>
@@ -191,9 +222,36 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                     <SelectValue placeholder={t('shop.productDetails.selectSize') || "Select a size"} />
                   </SelectTrigger>
                   <SelectContent>
-                    {["S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
-                      <SelectItem key={size} value={size}>
-                        {size}
+                    {availableSizes.length > 0 ? (
+                        availableSizes.map((size) => (
+                          <SelectItem key={size} value={size}>
+                            {size}
+                          </SelectItem>
+                        ))
+                    ) : (
+                        ["S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
+                        <SelectItem key={size} value={size}>
+                            {size}
+                        </SelectItem>
+                        ))
+                    )}
+                  </SelectContent>
+                </Select>
+              </GlassCard>
+            )}
+
+            {/* Color Selector */}
+            {availableColors.length > 0 && (
+              <GlassCard className="p-4">
+                <label className="text-sm font-medium mb-2 block">Color:</label>
+                <Select value={selectedColor} onValueChange={setSelectedColor}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a color" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableColors.map((color) => (
+                      <SelectItem key={color} value={color}>
+                        {color}
                       </SelectItem>
                     ))}
                   </SelectContent>
