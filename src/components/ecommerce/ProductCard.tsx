@@ -144,9 +144,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               <span className="hidden sm:inline">
-                {viewMode === 'list' ? t('shop.productCard.addToCartLong') : t('shop.productCard.addShort')}
+                {hasOptions 
+                  ? (viewMode === 'list' ? t('shop.productCard.viewDetailsLong') : t('shop.productCard.viewShort'))
+                  : (viewMode === 'list' ? t('shop.productCard.addToCartLong') : t('shop.productCard.addShort'))
+                }
               </span>
-              <span className="sm:hidden">{t('shop.productCard.addShort')}</span>
+              <span className="sm:hidden">
+                {hasOptions ? t('shop.productCard.viewShort') : t('shop.productCard.addShort')}
+              </span>
             </GlassButton>
           </div>
         </div>

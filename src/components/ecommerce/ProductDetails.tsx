@@ -93,7 +93,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(price);
   };
 
-  const isWearCategory = product.category?.toLowerCase().includes("wear") || variants.some(v => v.size);
+  const isWearCategory = product.category?.toLowerCase().includes("wear") || product.category?.toLowerCase().includes("signature") || variants.some(v => v.size);
 
   const allImages = [
     product.image_url || "/placeholder.svg",
