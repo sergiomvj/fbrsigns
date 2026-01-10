@@ -338,45 +338,46 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                     {product.detailed_description || product.description || 
                      t('shop.productDetails.noDescription')}
                   </p>
+                  
+                  {isWearCategory && (
+                    <div className="mt-8 pt-8 border-t border-white/10">
+                      <h3 className="text-lg font-semibold mb-4">Size Chart – Next Level 6210 (Unisex)</h3>
+                      <p className="text-sm text-muted-foreground mb-4">Measurements in inches</p>
+                      <div className="rounded-md border border-white/10 overflow-hidden max-w-lg">
+                        <Table>
+                          <TableHeader className="bg-white/5">
+                            <TableRow className="border-white/10 hover:bg-white/5">
+                              <TableHead className="text-white">Size</TableHead>
+                              <TableHead className="text-white">Chest Width (in)</TableHead>
+                              <TableHead className="text-white">Body Length (in)</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {[
+                              { size: "S", chest: "18", length: "28" },
+                              { size: "M", chest: "20", length: "29" },
+                              { size: "L", chest: "22", length: "30" },
+                              { size: "XL", chest: "24", length: "31" },
+                              { size: "2XL", chest: "26", length: "32" },
+                              { size: "3XL", chest: "28", length: "33" },
+                            ].map((row) => (
+                              <TableRow key={row.size} className="border-white/10 hover:bg-white/5">
+                                <TableCell className="font-medium">{row.size}</TableCell>
+                                <TableCell>{row.chest}</TableCell>
+                                <TableCell>{row.length}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </GlassCard>
             </TabsContent>
             
             <TabsContent value="specifications" className="mt-6">
               <GlassCard className="p-6">
-                {isWearCategory && (
-                  <div className="mb-8">
-                    <h3 className="text-lg font-semibold mb-4">Size Chart – Next Level 6210 (Unisex)</h3>
-                    <p className="text-sm text-muted-foreground mb-4">Measurements in inches</p>
-                    <div className="rounded-md border border-white/10 overflow-hidden">
-                      <Table>
-                        <TableHeader className="bg-white/5">
-                          <TableRow className="border-white/10 hover:bg-white/5">
-                            <TableHead className="text-white">Size</TableHead>
-                            <TableHead className="text-white">Chest Width (in)</TableHead>
-                            <TableHead className="text-white">Body Length (in)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          {[
-                            { size: "S", chest: "18", length: "28" },
-                            { size: "M", chest: "20", length: "29" },
-                            { size: "L", chest: "22", length: "30" },
-                            { size: "XL", chest: "24", length: "31" },
-                            { size: "2XL", chest: "26", length: "32" },
-                            { size: "3XL", chest: "28", length: "33" },
-                          ].map((row) => (
-                            <TableRow key={row.size} className="border-white/10 hover:bg-white/5">
-                              <TableCell className="font-medium">{row.size}</TableCell>
-                              <TableCell>{row.chest}</TableCell>
-                              <TableCell>{row.length}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </div>
-                )}
                 <div className="grid md:grid-cols-2 gap-6">
                   {product.material && (
                     <div>

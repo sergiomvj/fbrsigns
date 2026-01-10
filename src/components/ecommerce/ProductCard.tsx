@@ -44,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     return new Intl.NumberFormat(locale, { style: 'currency', currency: 'USD' }).format(price);
   };
 
-  const hasOptions = product.has_sizes || product.has_colors;
+  const hasOptions = product.has_sizes || product.has_colors || product.categories?.has_sizes || product.categories?.has_colors;
 
   const handleAddToCart = () => {
     if (hasOptions && onViewDetails) {
@@ -101,7 +101,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             variant="default" 
             className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs"
           >
-            Options Available ( size/color)
+            Options Available ( size /color )
           </Badge>
         )}
 
