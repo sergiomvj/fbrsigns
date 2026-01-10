@@ -95,7 +95,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             variant="default" 
             className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs"
           >
-            Options Available (Colors / Sizes)
+            Options Available ( size/color)
           </Badge>
         )}
 

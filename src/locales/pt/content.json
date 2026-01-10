@@ -597,7 +597,8 @@
       "outdoor_advertising": "Publicidade Externa"
     },
     "productDetails": {
-      "backToProducts": "Voltar aos Produtos",
+      "backToProducts": "Voltar para Produtos",
+      "size": "Tamanho",
       "quantity": "Quantidade",
       "min": "Mín",
       "max": "Máx",

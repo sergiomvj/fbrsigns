@@ -597,6 +597,7 @@
     },
     "productDetails": {
       "backToProducts": "Volver a Productos",
+      "size": "Talla",
       "quantity": "Cantidad",
       "min": "Mín",
       "max": "Máx",
