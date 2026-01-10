@@ -14,7 +14,13 @@ interface Product {
   image_url?: string;
   category?: string;
   unit?: string;
-  categories?: { name: string };
+  categories?: {
+    name: string;
+    has_sizes?: boolean;
+    has_colors?: boolean;
+  };
+  has_sizes?: boolean;
+  has_colors?: boolean;
 }
 
 interface ProductCardProps {

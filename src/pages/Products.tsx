@@ -89,7 +89,9 @@ export default function Products({ onProductSelect, useLayout = true }: Products
         .select(`
           *,
           categories (
-            name
+            name,
+            has_sizes,
+            has_colors
           )
         `)
         .order('created_at', { ascending: false });

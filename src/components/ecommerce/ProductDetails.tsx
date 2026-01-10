@@ -216,7 +216,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
             {/* Size Selector for Wear Category or if variants exist */}
             {(isWearCategory || availableSizes.length > 0) && (
               <GlassCard className="p-4">
-                <label className="text-sm font-medium mb-2 block">{t('shop.productDetails.size') || "Size"}:</label>
+                <label className="text-sm font-medium mb-2 block">{t('shop.productDetails.size', { defaultValue: 'Size' })}:</label>
                 <Select value={selectedSize} onValueChange={setSelectedSize}>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder={t('shop.productDetails.selectSize') || "Select a size"} />
