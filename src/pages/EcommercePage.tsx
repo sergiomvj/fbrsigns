@@ -33,6 +33,16 @@ export default function EcommercePage() {
   const [currentView, setCurrentView] = useState<ViewMode>('products');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.selectedProduct) {
+      setSelectedProduct(location.state.selectedProduct);
+      setCurrentView('product-details');
+      // Clear state to prevent reopening on refresh (optional, but good practice)
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const handleProductSelect = (product: Product) => {
     setSelectedProduct(product);

@@ -5,6 +5,7 @@ import { GlassCard } from '@/components/ui/glass-card';
 import { GlassButton } from '@/components/ui/glass-button';
 import { Badge } from '@/components/ui/badge';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
   id: string;
@@ -36,6 +37,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const { addItem } = useCart();
   const { t, i18n } = useTranslation('content');
+  const navigate = useNavigate();
 
   const slugify = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || '';
 
@@ -47,8 +49,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const hasOptions = product.has_sizes || product.has_colors || product.categories?.has_sizes || product.categories?.has_colors;
 
   const handleAddToCart = () => {
-    if (hasOptions && onViewDetails) {
-      onViewDetails();
+    if (hasOptions) {
+      if (onViewDetails) {
+        onViewDetails();
+      } else {
+        // If onViewDetails is not provided, navigate to ecommerce page with selected product
+        navigate('/ecommerce', { state: { selectedProduct: product } });
+      }
       return;
     }
 
