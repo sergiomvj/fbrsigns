@@ -358,6 +358,7 @@ export type Database = {
           tags: string[] | null
           updated_at: string
           user_id: string | null
+          created_by: string | null
         }
         Insert: {
           amount: number
@@ -377,6 +378,7 @@ export type Database = {
           tags?: string[] | null
           updated_at?: string
           user_id?: string | null
+          created_by?: string | null
         }
         Update: {
           amount?: number
@@ -396,6 +398,7 @@ export type Database = {
           tags?: string[] | null
           updated_at?: string
           user_id?: string | null
+          created_by?: string | null
         }
         Relationships: [
           {
