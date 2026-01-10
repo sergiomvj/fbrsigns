@@ -28,7 +28,11 @@ interface Product {
   lead_time_days?: number;
   min_quantity?: number;
   max_quantity?: number;
-  categories?: { name: string };
+  categories?: { 
+    name: string;
+    has_sizes?: boolean;
+    has_colors?: boolean;
+  };
 }
 
 interface ProductsProps {

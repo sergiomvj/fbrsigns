@@ -653,6 +653,7 @@
     "productDetails": {
       "backToProducts": "Back to Products",
       "size": "Size",
+      "selectSize": "Select a size",
       "quantity": "Quantity",
       "min": "Min",
       "max": "Max",

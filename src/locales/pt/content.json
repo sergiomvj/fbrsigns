@@ -599,6 +599,7 @@
     "productDetails": {
       "backToProducts": "Voltar para Produtos",
       "size": "Tamanho",
+      "selectSize": "Selecionar tamanho",
       "quantity": "Quantidade",
       "min": "Mín",
       "max": "Máx",
