@@ -339,6 +339,74 @@ export type Database = {
         }
         Relationships: []
       }
+      expenses: {
+        Row: {
+          amount: number
+          category: string
+          created_at: string
+          description: string
+          expense_date: string
+          id: string
+          is_recurring: boolean | null
+          next_expense_date: string | null
+          notes: string | null
+          payment_method: string | null
+          receipt_url: string | null
+          recurring_frequency: string | null
+          subcategory: string | null
+          supplier_id: string | null
+          tags: string[] | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          amount: number
+          category: string
+          created_at?: string
+          description: string
+          expense_date?: string
+          id?: string
+          is_recurring?: boolean | null
+          next_expense_date?: string | null
+          notes?: string | null
+          payment_method?: string | null
+          receipt_url?: string | null
+          recurring_frequency?: string | null
+          subcategory?: string | null
+          supplier_id?: string | null
+          tags?: string[] | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          amount?: number
+          category?: string
+          created_at?: string
+          description?: string
+          expense_date?: string
+          id?: string
+          is_recurring?: boolean | null
+          next_expense_date?: string | null
+          notes?: string | null
+          payment_method?: string | null
+          receipt_url?: string | null
+          recurring_frequency?: string | null
+          subcategory?: string | null
+          supplier_id?: string | null
+          tags?: string[] | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_supplier_id_fkey"
+            columns: ["supplier_id"]
+            isOneToOne: false
+            referencedRelation: "suppliers"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       invoice_items: {
         Row: {
           created_at: string
@@ -831,6 +899,50 @@ export type Database = {
           },
         ]
       }
+      product_variants: {
+        Row: {
+          additional_price: number | null
+          color: string | null
+          created_at: string
+          id: string
+          product_id: string
+          size: string | null
+          sku: string | null
+          stock_quantity: number | null
+          updated_at: string
+        }
+        Insert: {
+          additional_price?: number | null
+          color?: string | null
+          created_at?: string
+          id?: string
+          product_id: string
+          size?: string | null
+          sku?: string | null
+          stock_quantity?: number | null
+          updated_at?: string
+        }
+        Update: {
+          additional_price?: number | null
+          color?: string | null
+          created_at?: string
+          id?: string
+          product_id?: string
+          size?: string | null
+          sku?: string | null
+          stock_quantity?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_variants_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -981,6 +1093,48 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      suppliers: {
+        Row: {
+          address: string | null
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          created_at: string
+          id: string
+          is_active: boolean | null
+          name: string
+          notes: string | null
+          updated_at: string
+          website: string | null
+        }
+        Insert: {
+          address?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          name: string
+          notes?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Update: {
+          address?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          notes?: string | null
+          updated_at?: string
+          website?: string | null
+        }
+        Relationships: []
       }
       user_activity_logs: {
         Row: {
