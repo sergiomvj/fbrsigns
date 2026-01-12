@@ -36,8 +36,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   viewMode = 'grid' 
 }) => {
   const { addItem } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
   const { t, i18n } = useTranslation('content');
   const navigate = useNavigate();
+
+  const isWishlisted = isInWishlist(product.id);
 
   const slugify = (s: string) => s?.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || '';
 

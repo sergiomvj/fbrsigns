@@ -38,6 +38,7 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
   const { t } = useTranslation();
   const location = useLocation();
   const { state } = useCart();
+  const { wishlist } = useWishlist();
   const [user, setUser] = useState<any>(null);
 
   const navigation = getNavigation(t);
@@ -173,6 +174,24 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
+            <Link to="/wishlist">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative mr-1"
+              >
+                <Heart className="h-6 w-6" />
+                {wishlist.length > 0 && (
+                  <Badge
+                    variant="destructive"
+                    className="absolute -top-1 -right-1 h-4 w-4 flex items-center justify-center p-0 text-[10px]"
+                  >
+                    {wishlist.length > 99 ? '99+' : wishlist.length}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
+
             <Button
               variant="ghost"
               size="icon"

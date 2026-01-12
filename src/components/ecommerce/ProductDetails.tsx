@@ -53,8 +53,11 @@ interface ProductDetailsProps {
 
 export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack }) => {
   const { addItem } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
   const { t, i18n } = useTranslation('content');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const isWishlisted = isInWishlist(product.id);
   const [quantity, setQuantity] = useState(product.min_quantity || 1);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [variants, setVariants] = useState<any[]>([]);
@@ -293,15 +296,26 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
               )}
             </GlassCard>
 
-            {/* Add to Cart */}
-            <GlassButton 
-              className="w-full" 
-              size="lg"
-              onClick={handleAddToCart}
-            >
-              <ShoppingCart className="h-5 w-5 mr-2" />
-              {t('shop.productDetails.addToCart')}
-            </GlassButton>
+            {/* Add to Cart and Wishlist */}
+            <div className="flex gap-4">
+              <GlassButton 
+                className="flex-1" 
+                size="lg"
+                onClick={handleAddToCart}
+              >
+                <ShoppingCart className="h-5 w-5 mr-2" />
+                {t('shop.productDetails.addToCart')}
+              </GlassButton>
+
+              <GlassButton
+                variant="outline"
+                size="lg"
+                className={`w-16 ${isWishlisted ? 'text-red-500 border-red-500/50 hover:bg-red-500/10' : ''}`}
+                onClick={() => toggleWishlist(product.id)}
+              >
+                <Heart className={`h-6 w-6 ${isWishlisted ? 'fill-current' : ''}`} />
+              </GlassButton>
+            </div>
 
             {/* Product Features */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
