@@ -32,11 +32,10 @@ export const LanguageSelector = () => {
         <Button 
           variant="ghost" 
           size="sm"
-          className="gap-2 text-foreground/80 hover:text-foreground hover:bg-accent/10"
+          className="gap-1 px-2 text-foreground/80 hover:text-foreground hover:bg-accent/10"
         >
-          <Globe className="h-4 w-4" />
-          <span className="hidden sm:inline">{currentLanguage.flag}</span>
-          <span className="hidden sm:inline text-xs font-medium">{currentLanguage.code.toUpperCase()}</span>
+          <span className="text-base">{currentLanguage.flag}</span>
+          <span className="hidden sm:inline text-xs font-medium ml-1">{currentLanguage.code.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
