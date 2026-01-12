@@ -22,7 +22,9 @@ export const LanguageSelector = () => {
     i18n.changeLanguage(languageCode);
   };
 
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+  // Ensure we match the language code correctly (e.g. 'en-US' -> 'en')
+  const currentLangCode = i18n.language?.split('-')[0] || 'en';
+  const currentLanguage = languages.find(lang => lang.code === currentLangCode) || languages[0];
 
   return (
     <DropdownMenu>
@@ -30,7 +32,7 @@ export const LanguageSelector = () => {
         <Button 
           variant="ghost" 
           size="sm"
-          className="gap-2 text-white/80 hover:text-white hover:bg-white/10"
+          className="gap-2 text-foreground/80 hover:text-foreground hover:bg-accent/10"
         >
           <Globe className="h-4 w-4" />
           <span className="hidden sm:inline">{currentLanguage.flag}</span>
@@ -48,7 +50,7 @@ export const LanguageSelector = () => {
               <span>{language.flag}</span>
               <span>{language.name}</span>
             </div>
-            {i18n.language === language.code && (
+            {currentLangCode === language.code && (
               <Check className="h-4 w-4 text-primary" />
             )}
           </DropdownMenuItem>
