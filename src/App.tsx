@@ -17,6 +17,7 @@ import QuoteRequest from "./pages/QuoteRequest";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CustomerDashboard from "./pages/CustomerDashboard";
+import Wishlist from "./pages/Wishlist";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/dashboard" element={<CustomerDashboard />} />
+            <Route path="/wishlist" element={<Wishlist />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

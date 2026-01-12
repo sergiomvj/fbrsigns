@@ -112,8 +112,23 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </Badge>
         )}
 
+        {/* Wishlist Button */}
+        <button
+          className={`absolute top-2 right-2 p-2 rounded-full backdrop-blur-sm transition-colors z-10 ${
+            isWishlisted 
+              ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20' 
+              : 'bg-background/60 text-muted-foreground hover:bg-background/80 hover:text-primary'
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleWishlist(product.id);
+          }}
+        >
+          <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current' : ''}`} />
+        </button>
+
         {/* Rating - Hidden on small screens */}
-        <div className="absolute top-2 right-2 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1">
+        <div className="absolute top-2 right-12 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star 
               key={star} 

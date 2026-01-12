@@ -247,6 +247,13 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
                 <LanguageSelector />
               </div>
 
+              <Link to="/wishlist" onClick={() => setIsOpen(false)}>
+                <GlassButton variant="ghost" className="w-full justify-start px-4">
+                  <Heart className="h-5 w-5 mr-2" />
+                  Wishlist
+                </GlassButton>
+              </Link>
+
               {/* Mobile Login / Dashboard */}
               {user ? (
                 <Link to="/dashboard" onClick={() => setIsOpen(false)}>
