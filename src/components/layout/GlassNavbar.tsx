@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart, User } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Heart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Button } from "@/components/ui/button";
