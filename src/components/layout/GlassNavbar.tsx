@@ -281,11 +281,6 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
               )
             ))}
             <div className="pt-4 space-y-3">
-              {/* Mobile Language Selector */}
-              <div className="flex justify-center">
-                <LanguageSelector />
-              </div>
-
               <Link to="/wishlist" onClick={() => setIsOpen(false)}>
                 <GlassButton variant="ghost" className="w-full justify-start px-4">
                   <Heart className="h-5 w-5 mr-2" />
