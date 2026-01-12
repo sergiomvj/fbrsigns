@@ -66,21 +66,77 @@ const CustomerDashboard = () => {
 
           {/* Orders Card */}
           <GlassCard className="p-6 md:col-span-2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-12 w-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
-                <Package className="h-6 w-6" />
-              </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Orders Column */}
               <div>
-                <h2 className="text-xl font-semibold text-white">Recent Orders</h2>
-                <p className="text-sm text-gray-400">Track and manage your orders</p>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-12 w-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <Package className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">Recent Orders</h2>
+                    <p className="text-sm text-gray-400">Track and manage your orders</p>
+                  </div>
+                </div>
+                
+                <div className="text-center py-8 text-gray-400 bg-black/20 rounded-lg">
+                  <p>No active orders found.</p>
+                  <Button variant="link" className="text-primary mt-2" onClick={() => navigate('/ecommerce')}>
+                    Start Shopping
+                  </Button>
+                </div>
               </div>
-            </div>
-            
-            <div className="text-center py-8 text-gray-400 bg-black/20 rounded-lg">
-              <p>No active orders found.</p>
-              <Button variant="link" className="text-primary mt-2" onClick={() => navigate('/ecommerce')}>
-                Start Shopping
-              </Button>
+
+              {/* Wishlist Column */}
+              <div>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-12 w-12 rounded-full bg-red-500/20 flex items-center justify-center text-red-400">
+                    <Heart className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-white">My Wishlist</h2>
+                    <p className="text-sm text-gray-400">Saved items ({wishlist.length})</p>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {wishlist.length === 0 ? (
+                    <div className="text-center py-8 text-gray-400 bg-black/20 rounded-lg">
+                      <p>Your wishlist is empty.</p>
+                      <Button variant="link" className="text-primary mt-2" onClick={() => navigate('/products')}>
+                        Browse Products
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="space-y-3">
+                      {wishlist.slice(0, 3).map((item) => (
+                        <div key={item.id} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer" onClick={() => navigate('/wishlist')}>
+                          <img 
+                            src={item.products?.image_url || "/placeholder.svg"} 
+                            alt={item.products?.name} 
+                            className="w-12 h-12 rounded object-cover bg-muted"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-sm truncate text-white">{item.products?.name}</h4>
+                            <p className="text-xs text-primary font-medium">
+                              ${item.products?.price?.toFixed(2)}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                      {wishlist.length > 3 && (
+                        <Button 
+                          variant="ghost" 
+                          className="w-full text-xs text-muted-foreground hover:text-white"
+                          onClick={() => navigate('/wishlist')}
+                        >
+                          View all {wishlist.length} items
+                        </Button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </GlassCard>
         </div>
