@@ -51,6 +51,19 @@
     "invalidEmail": "Dirección de correo electrónico inválida",
     "requiredField": "Este campo es obligatorio"
   },
+  "auth": {
+    "loginRequired": "Inicio de Sesión Requerido",
+    "loginToWishlist": "Por favor, inicia sesión para agregar artículos a tu lista de deseos."
+  },
+  "wishlist": {
+    "title": "Mi Lista de Deseos",
+    "empty": "Tu lista de deseos está vacía",
+    "emptyDesc": "¡Empieza a agregar artículos que te encantan!",
+    "removed": "Eliminado de la Lista de Deseos",
+    "removedDesc": "Artículo eliminado de tu lista de deseos.",
+    "added": "Agregado a la Lista de Deseos",
+    "addedDesc": "Artículo agregado a tu lista de deseos."
+  },
   "actions": {
     "search": "Buscar",
     "filter": "Filtrar",

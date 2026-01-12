@@ -54,6 +54,19 @@
     "invalidEmail": "Invalid email address",
     "requiredField": "This field is required"
   },
+  "auth": {
+    "loginRequired": "Login Required",
+    "loginToWishlist": "Please login to add items to your wishlist."
+  },
+  "wishlist": {
+    "title": "My Wishlist",
+    "empty": "Your wishlist is empty",
+    "emptyDesc": "Start adding items you love!",
+    "removed": "Removed from Wishlist",
+    "removedDesc": "Item removed from your wishlist.",
+    "added": "Added to Wishlist",
+    "addedDesc": "Item added to your wishlist."
+  },
   "actions": {
     "search": "Search",
     "filter": "Filter",
