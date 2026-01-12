@@ -6,10 +6,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { User, Package, LogOut, Settings, Heart } from "lucide-react";
 
+import { useWishlist } from "@/hooks/useWishlist";
+
 const CustomerDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { wishlist } = useWishlist();
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
