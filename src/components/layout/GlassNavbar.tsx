@@ -125,6 +125,25 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
             {/* Language Selector */}
             <LanguageSelector />
 
+            {/* Wishlist Button */}
+            <Link to="/wishlist">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="relative"
+              >
+                <Heart className="h-5 w-5" />
+                {wishlist.length > 0 && (
+                  <Badge
+                    variant="destructive"
+                    className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                  >
+                    {wishlist.length > 99 ? '99+' : wishlist.length}
+                  </Badge>
+                )}
+              </Button>
+            </Link>
+
             {/* Cart Button */}
             <Button
               variant="ghost"

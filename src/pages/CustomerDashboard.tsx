@@ -4,7 +4,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { User, Package, LogOut, Settings } from "lucide-react";
+import { User, Package, LogOut, Settings, Heart } from "lucide-react";
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();

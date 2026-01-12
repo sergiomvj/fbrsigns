@@ -1,3 +1,4 @@
+import React from 'react';
 import { Globe, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
