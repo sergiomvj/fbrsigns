@@ -193,7 +193,11 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-1">
+            <div className="mr-1">
+              <LanguageSelector />
+            </div>
+            
             <Link to="/wishlist">
               <Button
                 variant="ghost"
