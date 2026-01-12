@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, ShoppingCart, Star, Info, Truck, Shield, Award } from 'lucide-react';
+import { ArrowLeft, ShoppingCart, Star, Info, Truck, Shield, Award, Heart } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
+import { useWishlist } from '@/hooks/useWishlist';
 import { PageLayout } from '@/components/layout/PageLayout';
 import { GlassCard } from '@/components/ui/glass-card';
 import { GlassButton } from '@/components/ui/glass-button';
