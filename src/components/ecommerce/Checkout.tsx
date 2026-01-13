@@ -310,19 +310,45 @@ export const Checkout: React.FC<CheckoutProps> = (props) => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const { state } = useCart();
   const { t } = useTranslation('content');
+  const mountedRef = React.useRef(true);
+  const initializingRef = React.useRef(false);
 
   useEffect(() => {
-    console.log("[Checkout] Mounting Checkout Component");
-    if (state.total > 0) {
-      createPaymentIntent(state.total).then(res => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("[Checkout] Effect triggered. Total:", state.total);
+    
+    if (state.total <= 0) return;
+    if (initializingRef.current) return; // Prevent double firing
+    
+    initializingRef.current = true;
+    
+    createPaymentIntent(state.total)
+      .then(res => {
+        if (!mountedRef.current) return;
+        
         if (res?.clientSecret) {
           console.log("[Checkout] Client Secret received");
           setClientSecret(res.clientSecret);
         }
-      }).catch(err => {
+      })
+      .catch(err => {
+        if (!mountedRef.current) return;
         console.error("[Checkout] Failed to fetch client secret:", err);
+        toast({
+          title: "Error initializing checkout",
+          description: "Please try refreshing the page.",
+          variant: "destructive"
+        });
+      })
+      .finally(() => {
+        initializingRef.current = false;
       });
-    }
+      
   }, [state.total]);
 
   if (!stripePromise) {
