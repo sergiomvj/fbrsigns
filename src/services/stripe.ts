@@ -28,11 +28,15 @@ export const createPaymentIntent = async (
     const functionUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-payment-intent`;
     console.log("[Stripe Service] Target URL:", functionUrl);
 
+    // Use token if authenticated, otherwise fallback to Anon Key
+    const authHeader = token ? `Bearer ${token}` : `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
+    console.log("[Stripe Service] Auth Header Prefix:", authHeader.substring(0, 15) + "...");
+
     const response = await fetch(functionUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token || import.meta.env.VITE_SUPABASE_ANON_KEY}`
+        "Authorization": authHeader
       },
       body: JSON.stringify(payload)
     });
