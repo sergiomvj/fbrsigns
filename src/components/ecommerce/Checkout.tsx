@@ -308,6 +308,7 @@ const CheckoutContent: React.FC<CheckoutProps & { clientSecret: string }> = ({ o
 
 export const Checkout: React.FC<CheckoutProps> = (props) => {
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const { state } = useCart();
   const { t } = useTranslation('content');
   const mountedRef = React.useRef(true);
@@ -319,13 +320,14 @@ export const Checkout: React.FC<CheckoutProps> = (props) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("[Checkout] Effect triggered. Total:", state.total);
+  const initializeCheckout = () => {
+    console.log("[Checkout] Initializing checkout. Total:", state.total);
     
     if (state.total <= 0) return;
-    if (initializingRef.current) return; // Prevent double firing
+    if (initializingRef.current) return;
     
     initializingRef.current = true;
+    setError(null);
     
     createPaymentIntent(state.total)
       .then(res => {
@@ -334,21 +336,28 @@ export const Checkout: React.FC<CheckoutProps> = (props) => {
         if (res?.clientSecret) {
           console.log("[Checkout] Client Secret received");
           setClientSecret(res.clientSecret);
+        } else {
+            throw new Error("No client secret returned from server");
         }
       })
       .catch(err => {
         if (!mountedRef.current) return;
         console.error("[Checkout] Failed to fetch client secret:", err);
+        setError(err.message || "Failed to initialize payment");
         toast({
           title: "Error initializing checkout",
-          description: "Please try refreshing the page.",
+          description: err.message || "Please try again.",
           variant: "destructive"
         });
       })
       .finally(() => {
         initializingRef.current = false;
       });
-      
+  };
+
+  useEffect(() => {
+      // Auto-initialize on mount or total change
+      initializeCheckout();
   }, [state.total]);
 
   if (!stripePromise) {
@@ -357,6 +366,18 @@ export const Checkout: React.FC<CheckoutProps> = (props) => {
 
   if (state.items.length === 0) {
      return <div className="text-center py-20">{t('shop.checkout.emptyCart')}</div>;
+  }
+
+  if (error) {
+      return (
+        <div className="flex flex-col justify-center items-center h-96 gap-4">
+            <div className="text-destructive font-semibold">Unable to load checkout</div>
+            <p className="text-sm text-muted-foreground">{error}</p>
+            <Button onClick={() => initializeCheckout()} variant="outline">
+                Try Again
+            </Button>
+        </div>
+      );
   }
 
   if (!clientSecret) {

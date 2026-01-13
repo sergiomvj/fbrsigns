@@ -172,7 +172,7 @@ export const GlassFooter = () => {
           {/* Bottom Bar */}
           <div className="border-t border-glass-neutral/20 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-              © 2024 {companyInfo?.company_name || "FBRSigns"}. All rights reserved. <span className="text-xs opacity-50 ml-2">v2026.01.13.13.00</span>
+              © 2024 {companyInfo?.company_name || "FBRSigns"}. All rights reserved. <span className="text-xs opacity-50 ml-2">v2026.01.13.14.00</span>
             </p>
             <div className="flex space-x-6">
               <Link to="/terms-of-service" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
