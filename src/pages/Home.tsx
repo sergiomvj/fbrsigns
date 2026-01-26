@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { 
-  ArrowRight, 
-  Star, 
-  Users, 
-  Award, 
-  Zap, 
-  Shield, 
-  Clock, 
+import {
+  ArrowRight,
+  Star,
+  Users,
+  Award,
+  Zap,
+  Shield,
+  Clock,
   CheckCircle,
   Eye,
   Palette,
@@ -36,7 +36,7 @@ import heroBg5 from "@/assets/hero-bg-5.jpg";
 
 const heroBgImages = [
   heroBg1,
-  heroBg2, 
+  heroBg2,
   heroBg3,
   heroBg4,
   heroBg5
@@ -56,7 +56,7 @@ export default function Home() {
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
   const [showAIAssistant, setShowAIAssistant] = useState(false);
   const { t } = useTranslation();
-  
+
   // Dynamic data with translations
   const stats = [
     { label: t('content:stats.experience.label'), value: t('content:stats.experience.value') },
@@ -90,28 +90,32 @@ export default function Home() {
 
   const featuredProducts = [
     {
+      id: "custom-signs",
       name: t('content:products.customSigns.name'),
       description: t('content:products.customSigns.description'),
       price: t('content:products.customSigns.price'),
-      image: "/placeholder.svg"
+      image: galleryStorefront
     },
     {
+      id: "digital-led",
       name: t('content:products.digitalLED.name'),
       description: t('content:products.digitalLED.description'),
       price: t('content:products.digitalLED.price'),
-      image: "/placeholder.svg"
+      image: galleryDigitalLED
     },
     {
+      id: "vehicle-wraps",
       name: t('content:products.vehicleWraps.name'),
       description: t('content:products.vehicleWraps.description'),
       price: t('content:products.vehicleWraps.price'),
-      image: "/placeholder.svg"
+      image: galleryVehicleWrap
     },
     {
+      id: "trade-show",
       name: t('content:products.tradeShow.name'),
       description: t('content:products.tradeShow.description'),
       price: t('content:products.tradeShow.price'),
-      image: "/placeholder.svg"
+      image: galleryTradeShow
     }
   ];
 
@@ -154,27 +158,27 @@ export default function Home() {
             alt="Professional signage background"
             className="w-full h-full object-cover object-center"
           />
-          
+
           {/* Black Overlay with 70% opacity */}
           <div className="absolute inset-0 bg-black/70" />
-          
+
           {/* Floating Particles Effect */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full particle-animate" 
-                 style={{ animationDelay: '0s' }} />
-            <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-secondary/60 rounded-full particle-animate" 
-                 style={{ animationDelay: '1s' }} />
-            <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-accent/50 rounded-full particle-animate" 
-                 style={{ animationDelay: '2s' }} />
-            <div className="absolute top-1/6 right-1/3 w-1 h-1 bg-primary/30 rounded-full particle-animate" 
-                 style={{ animationDelay: '3s' }} />
-            <div className="absolute bottom-1/4 left-1/6 w-1.5 h-1.5 bg-secondary/40 rounded-full particle-animate" 
-                 style={{ animationDelay: '4s' }} />
-            <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-accent/60 rounded-full particle-animate" 
-                 style={{ animationDelay: '5s' }} />
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/40 rounded-full particle-animate"
+              style={{ animationDelay: '0s' }} />
+            <div className="absolute top-3/4 right-1/4 w-1 h-1 bg-secondary/60 rounded-full particle-animate"
+              style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-3/4 w-1.5 h-1.5 bg-accent/50 rounded-full particle-animate"
+              style={{ animationDelay: '2s' }} />
+            <div className="absolute top-1/6 right-1/3 w-1 h-1 bg-primary/30 rounded-full particle-animate"
+              style={{ animationDelay: '3s' }} />
+            <div className="absolute bottom-1/4 left-1/6 w-1.5 h-1.5 bg-secondary/40 rounded-full particle-animate"
+              style={{ animationDelay: '4s' }} />
+            <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-accent/60 rounded-full particle-animate"
+              style={{ animationDelay: '5s' }} />
           </div>
         </div>
-        
+
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center">
           <div className="animate-fade-in">
             <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold leading-tight mb-6">
@@ -194,7 +198,7 @@ export default function Home() {
                 <Link to="/products">{t('navigation:menu.products')}</Link>
               </GlassButton>
             </div>
-            
+
             {/* Stats */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-2xl mx-auto">
               {stats.map((stat, index) => (
@@ -210,7 +214,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         {/* Decorative Elements */}
         <div className="absolute top-1/4 left-8 w-16 h-16 bg-gradient-primary rounded-full opacity-10 animate-glow" />
         <div className="absolute bottom-1/4 right-8 w-20 h-20 bg-gradient-secondary rounded-full opacity-15 animate-glow" />
@@ -227,7 +231,7 @@ export default function Home() {
               {t('content:features.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -256,7 +260,7 @@ export default function Home() {
               {t('content:products.subtitle')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {featuredProducts.map((product, index) => (
               <GlassCard key={product.name} variant="interactive" className="group overflow-hidden">
@@ -272,7 +276,7 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <span className="text-lg font-semibold text-gradient">{product.price}</span>
                   <GlassButton variant="outline" size="sm" asChild>
-                    <Link to="/products">
+                    <Link to={`/products/${product.id}`}>
                       <Eye className="h-4 w-4 mr-2" />
                       {t('content:products.viewDetails')}
                     </Link>
@@ -281,7 +285,7 @@ export default function Home() {
               </GlassCard>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <GlassButton variant="hero" size="lg" asChild>
               <Link to="/products">
@@ -304,7 +308,7 @@ export default function Home() {
               {t('content:about.whyChooseUs')}
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <GlassCard key={testimonial.name} className="relative">
@@ -362,7 +366,7 @@ export default function Home() {
       </GlassButton>
 
       {/* AI Project Assistant Dialog */}
-      <AIProjectAssistant 
+      <AIProjectAssistant
         open={showAIAssistant}
         onOpenChange={setShowAIAssistant}
       />

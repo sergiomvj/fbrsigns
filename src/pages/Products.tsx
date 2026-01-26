@@ -28,7 +28,7 @@ interface Product {
   lead_time_days?: number;
   min_quantity?: number;
   max_quantity?: number;
-  categories?: { 
+  categories?: {
     name: string;
     has_sizes?: boolean;
     has_colors?: boolean;
@@ -78,7 +78,7 @@ export default function Products({ onProductSelect, useLayout = true }: Products
         .from('categories')
         .select('*')
         .order('name');
-      
+
       if (error) throw error;
       return [{ id: 'all', name: 'All Products' }, ...data];
     }
@@ -99,7 +99,7 @@ export default function Products({ onProductSelect, useLayout = true }: Products
           )
         `)
         .order('created_at', { ascending: false });
-      
+
       if (error) throw error;
       return data;
     }
@@ -110,7 +110,7 @@ export default function Products({ onProductSelect, useLayout = true }: Products
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All Products" || 
+    const matchesCategory = selectedCategory === "All Products" ||
       product.categories?.name === selectedCategory ||
       product.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -119,29 +119,23 @@ export default function Products({ onProductSelect, useLayout = true }: Products
   const content = (
     <section className="py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6" dangerouslySetInnerHTML={{ __html: t('shop.title') }}>
-          </h1>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            {t('shop.subtitle')}
-          </p>
+        {/* Search Hero */}
+        <div className="relative max-w-2xl mx-auto mb-12">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-muted-foreground" />
+            <Input
+              placeholder={t('shop.searchPlaceholder')}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-12 h-14 text-lg glass-input rounded-full shadow-lg"
+            />
+          </div>
         </div>
 
         {/* Filters */}
         <GlassCard className="mb-8 sm:mb-12">
           <div className="flex flex-col lg:flex-row gap-6">
-            {/* Search */}
-            <div className="flex-1 min-w-0">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder={t('shop.searchPlaceholder')}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 glass-input"
-                />
-              </div>
-            </div>
+
 
             {/* Category Filter - Mobile Dropdown */}
             <div className="block sm:hidden">
@@ -207,11 +201,10 @@ export default function Products({ onProductSelect, useLayout = true }: Products
         {/* Products Grid */}
         {!isLoading && (
           <div
-            className={`grid gap-4 sm:gap-6 ${
-              viewMode === "grid"
-                ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                : "grid-cols-1"
-            }`}
+            className={`grid gap-4 sm:gap-6 ${viewMode === "grid"
+              ? "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+              : "grid-cols-1"
+              }`}
           >
             {filteredProducts.map((product) => (
               <ProductCard
@@ -225,11 +218,11 @@ export default function Products({ onProductSelect, useLayout = true }: Products
         )}
 
         {!isLoading && filteredProducts.length === 0 && (
-      <div className="text-center py-16">
-        <p className="text-xl text-muted-foreground">
-          {t('shop.noResults')}
-        </p>
-      </div>
+          <div className="text-center py-16">
+            <p className="text-xl text-muted-foreground">
+              {t('shop.noResults')}
+            </p>
+          </div>
         )}
       </div>
     </section>

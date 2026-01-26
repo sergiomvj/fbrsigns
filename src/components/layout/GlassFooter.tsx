@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { 
-  Zap, 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin 
+import {
+  Zap,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useCompanyInfo } from "@/hooks/useCompanyInfo";
@@ -49,12 +49,12 @@ const socialLinks = [
 
 export const GlassFooter = () => {
   const { data: companyInfo } = useCompanyInfo();
-  
+
   return (
     <footer className="relative mt-32">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-hero opacity-50" />
-      
+
       <GlassCard className="relative mx-4 mb-8">
         <div className="max-w-7xl mx-auto px-6 py-16">
           {/* Main Footer Content */}
@@ -70,10 +70,10 @@ export const GlassFooter = () => {
                 </span>
               </div>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                Transforming your vision into stunning visual communication solutions. 
+                Transforming your vision into stunning visual communication solutions.
                 Professional signage that makes your brand stand out.
               </p>
-              
+
               {/* Contact Info */}
               <div className="space-y-3">
                 {companyInfo?.company_phone && (
@@ -183,6 +183,12 @@ export const GlassFooter = () => {
               </Link>
               <Link to="/cookies" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                 Cookie Policy
+              </Link>
+              <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                About Us
+              </Link>
+              <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                Contact
               </Link>
             </div>
           </div>

@@ -21,10 +21,8 @@ interface NavigationItem {
 
 const getNavigation = (t: any): NavigationItem[] => [
   { name: t('navigation:menu.home'), href: "/" },
-  { name: t('navigation:menu.ecommerce'), href: "/ecommerce" },
   { name: t('navigation:menu.services'), href: "/services" },
   // { name: t('navigation:menu.portfolio'), href: "/portfolio" },
-  { name: t('navigation:menu.about'), href: "/about" },
   { name: t('navigation:menu.contact'), href: "/contact" },
   { name: 'FBRSIGNS.shop', href: "https://fbrsigns.quotearea.com/", external: true },
 ];
@@ -59,7 +57,7 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
       setScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       subscription.unsubscribe();
@@ -197,7 +195,7 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
             <div className="mr-1">
               <LanguageSelector />
             </div>
-            
+
             <Link to="/wishlist">
               <Button
                 variant="ghost"
