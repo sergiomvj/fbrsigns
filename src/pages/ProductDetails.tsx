@@ -13,6 +13,49 @@ import galleryDigitalLED from "@/assets/gallery-digital-led.jpg";
 import galleryVehicleWrap from "@/assets/gallery-vehicle-wrap.jpg";
 import galleryTradeShow from "@/assets/gallery-trade-show.jpg";
 
+// Helper component for Gallery
+const ProductGallery = ({ mainImage, additionalImages, productName }: { mainImage: string, additionalImages?: string[], productName: string }) => {
+    const [selectedImage, setSelectedImage] = useState(mainImage);
+
+    // Update selected image if mainImage changes (e.g. language switch / data load)
+    useEffect(() => {
+        setSelectedImage(mainImage);
+    }, [mainImage]);
+
+    const allImages = [mainImage, ...(additionalImages || [])];
+
+    return (
+        <div className="space-y-4">
+            <div className="relative rounded-2xl overflow-hidden glass-card aspect-video lg:aspect-square bg-muted">
+                <img
+                    src={selectedImage}
+                    alt={productName}
+                    className="w-full h-full object-cover transition-all duration-300"
+                />
+            </div>
+
+            {allImages.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                    {allImages.map((img, idx) => (
+                        <button
+                            key={idx}
+                            onClick={() => setSelectedImage(img)}
+                            className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${selectedImage === img ? 'border-primary ring-2 ring-primary/20' : 'border-transparent hover:border-primary/50'
+                                }`}
+                        >
+                            <img
+                                src={img}
+                                alt={`${productName} view ${idx + 1}`}
+                                className="w-full h-full object-cover"
+                            />
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
 export default function ProductDetails() {
     const { id } = useParams();
     const { t } = useTranslation();
@@ -122,13 +165,11 @@ export default function ProductDetails() {
 
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
                     {/* Image Section */}
-                    <div className="relative rounded-2xl overflow-hidden glass-card aspect-video lg:aspect-square">
-                        <img
-                            src={product.image || product.image_url || "/placeholder.svg"}
-                            alt={product.name}
-                            className="w-full h-full object-cover"
-                        />
-                    </div>
+                    <ProductGallery
+                        mainImage={product.image || product.image_url || "/placeholder.svg"}
+                        additionalImages={product.additional_images}
+                        productName={product.name}
+                    />
 
                     {/* Content Section */}
                     <div>

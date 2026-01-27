@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, ShoppingCart, Eye, Heart } from 'lucide-react';
+import { Star, ShoppingCart, Eye, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
 import { GlassCard } from '@/components/ui/glass-card';
@@ -14,6 +14,7 @@ interface Product {
   description?: string;
   price: number;
   image_url?: string;
+  additional_images?: string[];
   category?: string;
   unit?: string;
   categories?: {
@@ -40,6 +41,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const { isInWishlist, toggleWishlist } = useWishlist();
   const { t, i18n } = useTranslation('content');
   const navigate = useNavigate();
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  const allImages = React.useMemo(() => {
+    const images = [];
+    if (product.image_url) images.push(product.image_url);
+    if (product.additional_images && Array.isArray(product.additional_images)) {
+      images.push(...product.additional_images);
+    }
+    return images.length > 0 ? images : ['/placeholder.svg'];
+  }, [product.image_url, product.additional_images]);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+  };
 
   const isWishlisted = isInWishlist(product.id);
 
@@ -76,17 +95,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <GlassCard
       variant="interactive"
       className={`group ${viewMode === "list"
-          ? "flex flex-col sm:flex-row gap-4 sm:gap-6"
-          : ""
+        ? "flex flex-col sm:flex-row gap-4 sm:gap-6"
+        : ""
         }`}
     >
-      {/* Product Image */}
+      {/* Product Image Carousel */}
       <div className={`${viewMode === "list"
-          ? "w-full sm:w-48 sm:flex-shrink-0 h-48 sm:h-auto"
-          : "mb-4 sm:mb-6"
+        ? "w-full sm:w-48 sm:flex-shrink-0 h-48 sm:h-auto"
+        : "mb-4 sm:mb-6"
         } aspect-square rounded-lg overflow-hidden bg-muted relative`}>
+
+        {/* Main Image */}
         <img
-          src={product.image_url || "/placeholder.svg"}
+          src={allImages[currentImageIndex] || "/placeholder.svg"}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           onError={(e) => {
@@ -94,11 +115,46 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           }}
         />
 
+        {/* Carousel Controls */}
+        {allImages.length > 1 && (
+          <>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                prevImage();
+              }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                nextImage();
+              }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-20">
+              {allImages.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                    }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+
         {/* Category Badge */}
         {(product.categories?.name || product.category) && (
           <Badge
             variant="secondary"
-            className="absolute top-2 left-2 bg-background/90 backdrop-blur-sm text-xs"
+            className="absolute top-2 left-2 bg-background/90 backdrop-blur-sm text-xs z-10"
           >
             {t(`shop.categories.${slugify(product.categories?.name || product.category || '')}` as any, { defaultValue: product.categories?.name || product.category })}
           </Badge>
@@ -108,7 +164,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {hasOptions && (
           <Badge
             variant="default"
-            className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs"
+            className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs z-10"
           >
             Options Available ( size /color )
           </Badge>
@@ -116,9 +172,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Wishlist Button */}
         <button
-          className={`absolute top-2 right-2 p-2 rounded-full backdrop-blur-sm transition-colors z-10 ${isWishlisted
-              ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
-              : 'bg-background/60 text-muted-foreground hover:bg-background/80 hover:text-primary'
+          className={`absolute top-2 right-2 p-2 rounded-full backdrop-blur-sm transition-colors z-20 ${isWishlisted
+            ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
+            : 'bg-background/60 text-muted-foreground hover:bg-background/80 hover:text-primary'
             }`}
           onClick={(e) => {
             e.stopPropagation();
@@ -128,8 +184,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <Heart className={`h-4 w-4 ${isWishlisted ? 'fill-current' : ''}`} />
         </button>
 
-        {/* Rating - Hidden on small screens */}
-        <div className="absolute top-2 right-12 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1">
+        {/* Rating */}
+        <div className="absolute top-2 right-12 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1 z-10">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
