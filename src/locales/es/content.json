@@ -11,12 +11,12 @@
       "label": "Años de Experiencia"
     },
     "clients": {
-      "value": "2.500+", 
+      "value": "2.500+",
       "label": "Clientes Satisfechos"
     },
     "projects": {
       "value": "10.000+",
-      "label": "Proyectos Completados"  
+      "label": "Proyectos Completados"
     },
     "success": {
       "value": "99%",
@@ -31,7 +31,7 @@
       "description": "Usamos solo materiales de la más alta calidad para asegurar que tu señalización dure por años."
     },
     "fastTurnaround": {
-      "title": "Tiempos de Entrega Rápidos", 
+      "title": "Tiempos de Entrega Rápidos",
       "description": "Producción y entrega rápidas sin comprometer la calidad. La mayoría de proyectos completados en 5-7 días hábiles."
     },
     "customDesign": {
@@ -49,22 +49,26 @@
     "customSigns": {
       "name": "Letreros Comerciales Personalizados",
       "description": "Señalización profesional de fachada que hace destacar tu negocio",
-      "price": "Desde $299"
+      "price": "Desde $299",
+      "details": "Soluciones de señalización personalizadas premium adaptadas a la identidad de su marca. Disponible en varios materiales incluyendo aluminio, acrílico y madera."
     },
     "digitalLED": {
-      "name": "Pantallas LED Digitales", 
+      "name": "Pantallas LED Digitales",
       "description": "Señalización digital moderna para contenido dinámico y máximo impacto",
-      "price": "Desde $899"
+      "price": "Desde $899",
+      "details": "Pantallas LED de alta visibilidad perfectas para publicidad interior y exterior. Eficiencia energética y totalmente programable."
     },
     "vehicleWraps": {
       "name": "Vinilado de Vehículos",
-      "description": "Transforma tu vehículo en una valla publicitaria móvil para tu negocio", 
-      "price": "Desde $1.299"
+      "description": "Transforma tu vehículo en una valla publicitaria móvil para tu negocio",
+      "price": "Desde $1.299",
+      "details": "Transforme su vehículo en un valla publicitaria móvil con nuestros vinilos de alta calidad. Instalación profesional incluida."
     },
     "tradeShow": {
       "name": "Displays para Ferias",
       "description": "Displays portátiles y profesionales que atraen atención en eventos",
-      "price": "Desde $489"
+      "price": "Desde $489",
+      "details": "Displays portátiles e impactantes para ferias, pancartas y stands diseñados para atraer la atención en eventos."
     },
     "viewDetails": "Ver Detalles",
     "viewAllProducts": "Ver Todos los Productos"
@@ -78,20 +82,20 @@
       "startingPrice": "$199",
       "features": [
         "Diseño de Logotipo Personalizado",
-        "Desarrollo de Identidad de Marca", 
+        "Desarrollo de Identidad de Marca",
         "Creación de Diseño y Maqueta",
         "Consultoría de Esquema de Colores"
       ],
       "process": [
         "Consulta Inicial",
-        "Desarrollo del Concepto", 
+        "Desarrollo del Concepto",
         "Refinamiento del Diseño",
         "Aprobación Final"
       ],
       "timeline": "3-5 días hábiles"
     },
     "production": {
-      "title": "Servicios de Producción", 
+      "title": "Servicios de Producción",
       "description": "Impresión y fabricación de última generación utilizando materiales premium y tecnología de vanguardia.",
       "startingPrice": "$299",
       "features": [
@@ -201,7 +205,7 @@
       "description": "Pantallas digitales llamativas que capturan la atención y aumentan el tráfico peatonal"
     },
     "illuminatedSigns": {
-      "title": "Señales Iluminadas", 
+      "title": "Señales Iluminadas",
       "description": "Soluciones de iluminación profesional que hacen su negocio visible 24/7"
     },
     "vehicleWraps": {
@@ -260,7 +264,7 @@
         },
         {
           "name": "Mike Rodriguez",
-          "role": "Director Creativo", 
+          "role": "Director Creativo",
           "bio": "Mike aporta pensamiento de diseño innovador y asegura que cada proyecto supere las expectativas.",
           "image": "/placeholder.svg"
         },
@@ -361,7 +365,11 @@
         "category": "Letreros Comerciales",
         "client": "Restaurante Bella Vista",
         "description": "Paquete completo de señalización incluyendo letrero de fachada, tableros de menú y señalización interior.",
-        "tags": ["LED", "Acrílico", "Diseño Interior"],
+        "tags": [
+          "LED",
+          "Acrílico",
+          "Diseño Interior"
+        ],
         "year": "2024"
       },
       {
@@ -369,7 +377,11 @@
         "category": "Pantallas Digitales",
         "client": "Tech Solutions Inc",
         "description": "Pantalla LED de gran formato para publicidad de alto tráfico con gestión de contenido dinámico.",
-        "tags": ["LED", "Digital", "Alto Tráfico"],
+        "tags": [
+          "LED",
+          "Digital",
+          "Alto Tráfico"
+        ],
         "year": "2024"
       },
       {
@@ -377,7 +389,11 @@
         "category": "Vinilado de Vehículos",
         "client": "Green Clean Services",
         "description": "Branding completo de flota con vinilos llamativos para 12 vehículos de servicio.",
-        "tags": ["Flota", "Branding", "Vinilo"],
+        "tags": [
+          "Flota",
+          "Branding",
+          "Vinilo"
+        ],
         "year": "2023"
       },
       {
@@ -385,7 +401,11 @@
         "category": "Ferias Comerciales",
         "client": "Innovation Expo 2024",
         "description": "Sistema modular de display para feria con iluminación integrada y elementos interactivos.",
-        "tags": ["Modular", "Interactivo", "Portátil"],
+        "tags": [
+          "Modular",
+          "Interactivo",
+          "Portátil"
+        ],
         "year": "2024"
       },
       {
@@ -393,7 +413,11 @@
         "category": "Señalización Interior",
         "client": "Atlantic Financial Group",
         "description": "Suite profesional de señalización interior incluyendo display del lobby, señales direccionales e identificación de salas.",
-        "tags": ["Corporativo", "Señalización", "Profesional"],
+        "tags": [
+          "Corporativo",
+          "Señalización",
+          "Profesional"
+        ],
         "year": "2023"
       },
       {
@@ -401,7 +425,11 @@
         "category": "Publicidad Exterior",
         "client": "Riverside Shopping Plaza",
         "description": "Letrero de directorio a gran escala con paneles iluminados de inquilinos e integración de mapa.",
-        "tags": ["Directorio", "Iluminado", "Gran Escala"],
+        "tags": [
+          "Directorio",
+          "Iluminado",
+          "Gran Escala"
+        ],
         "year": "2024"
       },
       {
@@ -409,7 +437,11 @@
         "category": "Señalización Interior",
         "client": "Sunrise Medical Center",
         "description": "Sistema integral de señalización con letreros compatibles con ADA en toda la instalación.",
-        "tags": ["Compatible ADA", "Salud", "Señalización"],
+        "tags": [
+          "Compatible ADA",
+          "Salud",
+          "Señalización"
+        ],
         "year": "2023"
       },
       {
@@ -417,7 +449,11 @@
         "category": "Letreros Comerciales",
         "client": "Premier Properties",
         "description": "Letreros monumentales, señalización direccional y displays del centro de ventas para desarrollo de lujo.",
-        "tags": ["Monumental", "Lujo", "Desarrollo"],
+        "tags": [
+          "Monumental",
+          "Lujo",
+          "Desarrollo"
+        ],
         "year": "2024"
       }
     ],
@@ -614,10 +650,25 @@
       },
       "noDescription": "Descripción detallada del producto no disponible.",
       "material": "Material",
-      "dimensions": "Dimensiones", 
+      "dimensions": "Dimensiones",
       "technicalSpecs": "Especificaciones Técnicas",
       "defaultInstallationInfo": "La información de instalación se proporcionará con el producto. Nuestro equipo técnico está disponible para soporte completo.",
-      "defaultWarrantyInfo": "Este producto cuenta con garantía de calidad y soporte técnico. Contáctanos para más información sobre nuestra política de garantía."
+      "defaultWarrantyInfo": "Este producto cuenta con garantía de calidad y soporte técnico. Contáctanos para más información sobre nuestra política de garantía.",
+      "notFound": {
+        "title": "Producto No Encontrado",
+        "description": "El producto que busca no existe.",
+        "backButton": "Volver a Productos"
+      },
+      "features": {
+        "premiumQuality": "Calidad Premium",
+        "warrantyIncluded": "Garantía Incluida",
+        "fastTurnaround": "Entrega Rápida",
+        "professionalInstall": "Instalación Profesional"
+      },
+      "actions": {
+        "getQuote": "Obtener Cotización",
+        "contactUs": "Contáctenos"
+      }
     },
     "cart": {
       "title": "Tu Carrito ({{count}} artículo)",
@@ -707,5 +758,60 @@
       "paypalEmail": "Email de PayPal",
       "paypalRedirect": "Serás redirigido a PayPal para completar tu pago de forma segura."
     }
+  },
+  "cookiePolicy": {
+    "title": "Política de Cookies",
+    "content": "Utilizamos cookies y tecnologías similares para mantener la seguridad, habilitar la funcionalidad del sitio y mejorar nuestro sitio. También utilizamos cookies y tecnologías similares con fines de marketing y para proporcionar contenido y publicidad personalizados. Puede rechazar todas las cookies no estrictamente necesarias haciendo clic en el botón correspondiente. También puede optar por personalizar su configuración de cookies. Al presionar “Aceptar Todas las Cookies” o continuar usando este sitio, usted acepta nuestra Política de Privacidad (excepto en la medida en que haya optado por no usar ciertas cookies) y nuestros Términos de Uso."
+  },
+  "returnRefundPolicy": {
+    "title": "Política de Devolución y Reembolso",
+    "lastUpdated": "Última Actualización: 26 de Enero de 2026",
+    "intro": "En FBRSIGNS.com, la satisfacción del cliente es muy importante para nosotros. Esta Política de Devolución y Reembolso explica las condiciones bajo las cuales se aceptan devoluciones, cambios y reembolsos.",
+    "sections": [
+      {
+        "title": "1. Productos Personalizados",
+        "content": "Debido a la naturaleza de los productos personalizados y hechos a medida: Todos los productos personalizados no son reembolsables ni retornables. Esto incluye productos hechos de acuerdo con las especificaciones del cliente, como tamaño, color, diseño, texto o materiales. Excepciones: Se puede ofrecer un reembolso o reemplazo si: El producto llega dañado, El producto tiene un defecto de fabricación, o El producto entregado no coincide con las especificaciones aprobadas del pedido. Las reclamaciones deben presentarse dentro de los 7 días posteriores a la entrega, con fotos o videos que muestren claramente o problema."
+      },
+      {
+        "title": "2. Productos No Personalizados (Estándar)",
+        "content": "Los productos no personalizados pueden ser elegibles para devolución si: El artículo no ha sido usado y está en condiciones originales. La solicitud de devolución se realiza dentro de los 14 días posteriores a la entrega. Una vez aprobado, el producto debe devolverse en su embalaje original."
+      },
+      {
+        "title": "3. Derechos del Consumidor – Brasil y Unión Europea",
+        "content": "Si se encuentra en Brasil o la Unión Europea, puede tener derechos de consumidor obligatorios bajo la ley local. Brasil (CDC – Derecho de Desistimiento): Los clientes pueden cancelar una compra dentro de los 7 días posteriores a la recepción, excepto para productos personalizados. Unión Europea (Directiva de Derechos del Consumidor): Los clientes pueden desistir de una compra a distancia dentro de los 14 días, excepto para bienes hechos a medida o personalizados. Estos derechos legales no se ven afectados por esta Política."
+      },
+      {
+        "title": "4. Proceso de Devolución",
+        "content": "Para solicitar una devolución o reembolso: Contáctenos en support@fbrsigns.com. Proporcione su número de pedido y el motivo de la solicitud. Adjunte fotos o videos si el producto está defectuoso o dañado. Las devoluciones enviadas sin autorización previa pueden no ser aceptadas."
+      },
+      {
+        "title": "5. Costos de Envío de Devolución",
+        "content": "Los clientes son responsables de los costos de envío de devolución a menos que el producto esté defectuoso o sea incorrecto. Las tarifas de envío no son reembolsables. Recomendamos utilizar un método de envío rastreable."
+      },
+      {
+        "title": "6. Reembolsos",
+        "content": "Una vez recibido e inspeccionado el producto devuelto: Los reembolsos aprobados se emitirán al método de pago original. Los reembolsos se procesan dentro de 5–10 días hábiles, dependiendo del proveedor de pago. Los tiempos de procesamiento bancario o de tarjeta pueden variar."
+      },
+      {
+        "title": "7. Cambios",
+        "content": "Podemos ofrecer cambios por artículos defectuosos o dañados, sujeto a disponibilidad. Los productos personalizados pueden rehacerse o reemplazarse, pero no reembolsarse, a menos que lo exija la ley."
+      },
+      {
+        "title": "8. Artículos No Retornables",
+        "content": "Los siguientes artículos no son retornables: Productos personalizados o hechos a medida. Artículos dañados debido a mal uso o instalación incorrecta. Artículos devueltos sin su embalaje original."
+      },
+      {
+        "title": "9. Cancelación de Pedidos",
+        "content": "Los pedidos pueden cancelarse solo antes de que comience la producción. Una vez iniciada la producción, las cancelaciones no son posibles para artículos personalizados."
+      },
+      {
+        "title": "10. Pedidos Internacionales",
+        "content": "Los clientes internacionales son responsables de: Aranceles aduaneros e impuestos de importación. Costos de envío de devolución para devoluciones internacionales. FBRSIGNS.com no es responsable de retrasos causados por el despacho de aduanas."
+      },
+      {
+        "title": "11. Contáctenos",
+        "content": "Si tiene preguntas sobre esta Política de Devolución y Reembolso, contáctenos: Email: support@fbrsigns.com. Sitio web: https://www.fbrsigns.com"
+      }
+    ]
   }
 }

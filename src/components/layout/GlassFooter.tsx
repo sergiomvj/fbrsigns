@@ -37,6 +37,7 @@ const footerSections = {
     { name: "FAQs", href: "/faq" },
     { name: "Support", href: "/support" },
     { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Return & Refund Policy", href: "/return-refund-policy" },
   ],
 };
 
@@ -183,6 +184,9 @@ export const GlassFooter = () => {
               </Link>
               <Link to="/cookies" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                 Cookie Policy
+              </Link>
+              <Link to="/return-refund-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                Return Policy
               </Link>
               <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                 About Us

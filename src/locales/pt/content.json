@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Transforme Sua Visão Em",
-    "subtitle": "Comunicação Visual Impressionante", 
+    "subtitle": "Comunicação Visual Impressionante",
     "description": "Sinalização profissional, impressão e serviços criativos que ajudam seu negócio a causar uma impressão duradoura.",
     "cta": "Inicie Seu Projeto"
   },
@@ -11,12 +11,12 @@
       "label": "Anos de Experiência"
     },
     "clients": {
-      "value": "2.500+", 
+      "value": "2.500+",
       "label": "Clientes Satisfeitos"
     },
     "projects": {
       "value": "10.000+",
-      "label": "Projetos Concluídos"  
+      "label": "Projetos Concluídos"
     },
     "success": {
       "value": "99%",
@@ -31,7 +31,7 @@
       "description": "Usamos apenas materiais da mais alta qualidade para garantir que sua sinalização dure por anos."
     },
     "fastTurnaround": {
-      "title": "Prazos de Entrega Rápidos", 
+      "title": "Prazos de Entrega Rápidos",
       "description": "Produção e entrega rápidas sem comprometer a qualidade. A maioria dos projetos concluídos em 5-7 dias úteis."
     },
     "customDesign": {
@@ -49,22 +49,26 @@
     "customSigns": {
       "name": "Placas Comerciais Personalizadas",
       "description": "Sinalização profissional de fachada que faz seu negócio se destacar",
-      "price": "A partir de $299"
+      "price": "A partir de $299",
+      "details": "Soluções de sinalização personalizadas premium adaptadas à identidade da sua marca. Disponível em diversos materiais incluindo alumínio, acrílico e madeira."
     },
     "digitalLED": {
-      "name": "Displays LED Digitais", 
+      "name": "Displays LED Digitais",
       "description": "Sinalização digital moderna para conteúdo dinâmico e máximo impacto",
-      "price": "A partir de $899"
+      "price": "A partir de $899",
+      "details": "Displays LED de alta visibilidade perfeitos para publicidade interna e externa. Eficientes energeticamente e totalmente programáveis."
     },
     "vehicleWraps": {
       "name": "Adesivação de Veículos",
-      "description": "Transforme seu veículo em um outdoor móvel para seu negócio", 
-      "price": "A partir de $1.299"
+      "description": "Transforme seu veículo em um outdoor móvel para seu negócio",
+      "price": "A partir de $1.299",
+      "details": "Transforme seu veículo em um outdoor móvel com nossos adesivos de vinil de alta qualidade. Instalação profissional incluída."
     },
     "tradeShow": {
       "name": "Displays para Feiras",
       "description": "Displays portáteis e profissionais que atraem atenção em eventos",
-      "price": "A partir de $489"
+      "price": "A partir de $489",
+      "details": "Displays portáteis e impactantes para feiras, banners e estandes projetados para atrair atenção em eventos."
     },
     "viewDetails": "Ver Detalhes",
     "viewAllProducts": "Ver Todos os Produtos"
@@ -78,20 +82,20 @@
       "startingPrice": "$199",
       "features": [
         "Design de Logotipo Personalizado",
-        "Desenvolvimento de Identidade da Marca", 
+        "Desenvolvimento de Identidade da Marca",
         "Criação de Layout e Mockup",
         "Consultoria de Esquema de Cores"
       ],
       "process": [
         "Consulta Inicial",
-        "Desenvolvimento do Conceito", 
+        "Desenvolvimento do Conceito",
         "Refinamento do Design",
         "Aprovação Final"
       ],
       "timeline": "3-5 dias úteis"
     },
     "production": {
-      "title": "Serviços de Produção", 
+      "title": "Serviços de Produção",
       "description": "Impressão e fabricação de última geração usando materiais premium e tecnologia de ponta.",
       "startingPrice": "$299",
       "features": [
@@ -201,7 +205,7 @@
       "description": "Displays digitais atraentes que capturam atenção e aumentam o tráfego de pedestres"
     },
     "illuminatedSigns": {
-      "title": "Placas Iluminadas", 
+      "title": "Placas Iluminadas",
       "description": "Soluções de iluminação profissional que tornam seu negócio visível 24/7"
     },
     "vehicleWraps": {
@@ -260,7 +264,7 @@
         },
         {
           "name": "Mike Rodriguez",
-          "role": "Diretor Criativo", 
+          "role": "Diretor Criativo",
           "bio": "Mike traz pensamento de design inovador e garante que cada projeto supere as expectativas.",
           "image": "/placeholder.svg"
         },
@@ -328,7 +332,7 @@
       "quote": "A FBR Signs transformou nossa fachada com uma bela placa iluminada. Nosso fluxo de clientes aumentou 40% no primeiro mês!"
     },
     "client2": {
-      "name": "Mike Chen", 
+      "name": "Mike Chen",
       "company": "Gerente de Loja de Varejo",
       "quote": "A placa LED digital mudou o jogo para nossas promoções. A qualidade e o serviço superaram nossas expectativas."
     },
@@ -361,7 +365,11 @@
         "category": "Placas Comerciais",
         "client": "Restaurante Bella Vista",
         "description": "Pacote completo de sinalização incluindo placa de fachada, pranchas de menu e sinalização interna.",
-        "tags": ["LED", "Acrílico", "Design de Interiores"],
+        "tags": [
+          "LED",
+          "Acrílico",
+          "Design de Interiores"
+        ],
         "year": "2024"
       },
       {
@@ -369,7 +377,11 @@
         "category": "Displays Digitais",
         "client": "Tech Solutions Inc",
         "description": "Display LED de grande formato para publicidade de alto tráfego com gerenciamento de conteúdo dinâmico.",
-        "tags": ["LED", "Digital", "Alto Tráfego"],
+        "tags": [
+          "LED",
+          "Digital",
+          "Alto Tráfego"
+        ],
         "year": "2024"
       },
       {
@@ -377,7 +389,11 @@
         "category": "Adesivação de Veículos",
         "client": "Green Clean Services",
         "description": "Branding completo da frota com adesivos atraentes para 12 veículos de serviço.",
-        "tags": ["Frota", "Branding", "Vinil"],
+        "tags": [
+          "Frota",
+          "Branding",
+          "Vinil"
+        ],
         "year": "2023"
       },
       {
@@ -385,7 +401,11 @@
         "category": "Feiras Comerciais",
         "client": "Innovation Expo 2024",
         "description": "Sistema modular de display para feira com iluminação integrada e elementos interativos.",
-        "tags": ["Modular", "Interativo", "Portátil"],
+        "tags": [
+          "Modular",
+          "Interativo",
+          "Portátil"
+        ],
         "year": "2024"
       },
       {
@@ -393,7 +413,11 @@
         "category": "Sinalização Interna",
         "client": "Atlantic Financial Group",
         "description": "Conjunto profissional de sinalização interna incluindo display do lobby, placas direcionais e identificação de salas.",
-        "tags": ["Corporativo", "Sinalização", "Profissional"],
+        "tags": [
+          "Corporativo",
+          "Sinalização",
+          "Profissional"
+        ],
         "year": "2023"
       },
       {
@@ -401,7 +425,11 @@
         "category": "Publicidade Externa",
         "client": "Riverside Shopping Plaza",
         "description": "Placa de diretório em grande escala com painéis iluminados de inquilinos e integração de mapa.",
-        "tags": ["Diretório", "Iluminado", "Grande Escala"],
+        "tags": [
+          "Diretório",
+          "Iluminado",
+          "Grande Escala"
+        ],
         "year": "2024"
       },
       {
@@ -409,7 +437,11 @@
         "category": "Sinalização Interna",
         "client": "Sunrise Medical Center",
         "description": "Sistema abrangente de sinalização com placas compatíveis com ADA em toda a instalação.",
-        "tags": ["Compatível com ADA", "Saúde", "Sinalização"],
+        "tags": [
+          "Compatível com ADA",
+          "Saúde",
+          "Sinalização"
+        ],
         "year": "2023"
       },
       {
@@ -417,7 +449,11 @@
         "category": "Placas Comerciais",
         "client": "Premier Properties",
         "description": "Placas monumentais, sinalização direcional e displays do centro de vendas para desenvolvimento de luxo.",
-        "tags": ["Monumental", "Luxo", "Desenvolvimento"],
+        "tags": [
+          "Monumental",
+          "Luxo",
+          "Desenvolvimento"
+        ],
         "year": "2024"
       }
     ],
@@ -565,7 +601,6 @@
       "summaryFailed": "Falha ao gerar resumo do projeto. Tente novamente."
     }
   },
-
   "shop": {
     "title": "Nossos <span class='text-gradient'>Produtos</span>",
     "subtitle": "Descubra nossa linha de soluções profissionais de sinalização.",
@@ -618,7 +653,22 @@
       "dimensions": "Dimensões",
       "technicalSpecs": "Especificações Técnicas",
       "defaultInstallationInfo": "Informações de instalação serão fornecidas junto com o produto. Nossa equipe técnica está disponível para suporte completo.",
-      "defaultWarrantyInfo": "Este produto possui garantia de qualidade e suporte técnico. Entre em contato para mais informações sobre nossa política de garantia."
+      "defaultWarrantyInfo": "Este produto possui garantia de qualidade e suporte técnico. Entre em contato para mais informações sobre nossa política de garantia.",
+      "notFound": {
+        "title": "Produto Não Encontrado",
+        "description": "O produto que você está procurando não existe.",
+        "backButton": "Voltar para Produtos"
+      },
+      "features": {
+        "premiumQuality": "Qualidade Premium",
+        "warrantyIncluded": "Garantia Inclusa",
+        "fastTurnaround": "Entrega Rápida",
+        "professionalInstall": "Instalação Profissional"
+      },
+      "actions": {
+        "getQuote": "Obter Orçamento",
+        "contactUs": "Entre em Contato"
+      }
     },
     "cart": {
       "title": "Seu Carrinho ({{count}} item)",
@@ -708,5 +758,60 @@
       "paypalEmail": "Email do PayPal",
       "paypalRedirect": "Você será redirecionado ao PayPal para concluir seu pagamento com segurança."
     }
+  },
+  "cookiePolicy": {
+    "title": "Política de Cookies",
+    "content": "Usamos cookies e tecnologias semelhantes para manter a segurança, habilitar a funcionalidade do site e melhorar nosso site. Também usamos cookies e tecnologias semelhantes para fins de marketing e para fornecer conteúdo e publicidade personalizados. Você pode rejeitar todos os cookies não estritamente necessários clicando no botão correspondente. Você também pode optar por personalizar suas configurações de cookies. Ao pressionar “Aceitar Todos os Cookies” ou continuar a usar este site, você concorda com nossa Política de Privacidade (exceto na medida em que você optou por não usar certos cookies) e nossos Termos de Uso."
+  },
+  "returnRefundPolicy": {
+    "title": "Política de Troca e Devolução",
+    "lastUpdated": "Última Atualização: 26 de Janeiro de 2026",
+    "intro": "Na FBRSIGNS.com, a satisfação do cliente é muito importante para nós. Esta Política de Troca e Devolução explica as condições sob as quais devoluções, trocas e reembolsos são aceitos.",
+    "sections": [
+      {
+        "title": "1. Produtos Personalizados",
+        "content": "Devido à natureza dos produtos personalizados e feitos sob encomenda: Todos os produtos personalizados não são reembolsáveis nem passíveis de devolução. Isso inclui produtos feitos de acordo com as especificações do cliente, como tamanho, cor, design, texto ou materiais. Exceções: Um reembolso ou substituição pode ser oferecido se: O produto chegar danificado, O produto tiver defeito de fabricação, ou O produto entregue não corresponder às especificações aprovadas do pedido. Reclamações devem ser enviadas dentro de 7 dias após a entrega, com fotos ou vídeos mostrando claramente o problema."
+      },
+      {
+        "title": "2. Produtos Não Personalizados (Padrão)",
+        "content": "Produtos não personalizados podem ser elegíveis para devolução se: O item não foi usado e está em condição original. A solicitação de devolução for feita dentro de 14 dias após a entrega. Uma vez aprovado, o produto deve ser devolvido na embalagem original."
+      },
+      {
+        "title": "3. Direitos do Consumidor – Brasil e União Europeia",
+        "content": "Se você estiver localizado no Brasil ou na União Europeia, poderá ter direitos do consumidor obrigatórios sob a lei local. Brasil (CDC – Direito de Arrependimento): Os clientes podem cancelar uma compra dentro de 7 dias após o recebimento, exceto para produtos personalizados. União Europeia (Diretiva dos Direitos do Consumidor): Os clientes podem desistir de uma compra à distância dentro de 14 dias, exceto para bens feitos sob medida ou personalizados. Esses direitos legais não são afetados por esta Política."
+      },
+      {
+        "title": "4. Processo de Devolução",
+        "content": "Para solicitar uma devolução ou reembolso: Entre em contato conosco em support@fbrsigns.com. Forneça o número do pedido e o motivo da solicitação. Anexe fotos ou vídeos se o produto estiver com defeito ou danificado. Devoluções enviadas sem autorização prévia podem não ser aceitas."
+      },
+      {
+        "title": "5. Custos de Envio de Devolução",
+        "content": "Os clientes são responsáveis pelos custos de envio de devolução, a menos que o produto esteja com defeito ou incorreto. As taxas de envio não são reembolsáveis. Recomendamos usar um método de envio rastreável."
+      },
+      {
+        "title": "6. Reembolsos",
+        "content": "Uma vez que o produto devolvido for recebido e inspecionado: Reembolsos aprovados serão emitidos para o método de pagamento original. Os reembolsos são processados dentro de 5–10 dias úteis, dependendo do provedor de pagamento. Os tempos de processamento bancário ou do cartão podem variar."
+      },
+      {
+        "title": "7. Trocas",
+        "content": "Podemos oferecer trocas para itens com defeito ou danificados, sujeito à disponibilidade. Produtos personalizados podem ser refeitos ou substituídos, mas não reembolsados, a menos que exigido por lei."
+      },
+      {
+        "title": "8. Itens Não Reembolsáveis",
+        "content": "Os seguintes itens não são reembolsáveis: Produtos personalizados ou feitos sob medida. Itens danificados devido a mau uso ou instalação inadequada. Itens devolvidos sem a embalagem original."
+      },
+      {
+        "title": "9. Cancelamento de Pedidos",
+        "content": "Os pedidos podem ser cancelados apenas antes do início da produção. Uma vez iniciada a produção, cancelamentos não são possíveis para itens personalizados."
+      },
+      {
+        "title": "10. Pedidos Internacionais",
+        "content": "Clientes internacionais são responsáveis por: Taxas alfandegárias e impostos de importação. Custos de envio de devolução para devoluções internacionais. FBRSIGNS.com não é responsável por atrasos causados pelo desembaraço aduaneiro."
+      },
+      {
+        "title": "11. Contate-nos",
+        "content": "Se você tiver dúvidas sobre esta Política de Troca e Devolução, entre em contato conosco: Email: support@fbrsigns.com. Site: https://www.fbrsigns.com"
+      }
+    ]
   }
 }

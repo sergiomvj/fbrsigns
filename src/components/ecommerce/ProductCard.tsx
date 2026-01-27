@@ -31,10 +31,10 @@ interface ProductCardProps {
   viewMode?: 'grid' | 'list';
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ 
-  product, 
-  onViewDetails, 
-  viewMode = 'grid' 
+export const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  onViewDetails,
+  viewMode = 'grid'
 }) => {
   const { addItem } = useCart();
   const { isInWishlist, toggleWishlist } = useWishlist();
@@ -73,20 +73,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <GlassCard 
-      variant="interactive" 
-      className={`group ${
-        viewMode === "list" 
-          ? "flex flex-col sm:flex-row gap-4 sm:gap-6" 
+    <GlassCard
+      variant="interactive"
+      className={`group ${viewMode === "list"
+          ? "flex flex-col sm:flex-row gap-4 sm:gap-6"
           : ""
-      }`}
+        }`}
     >
       {/* Product Image */}
-      <div className={`${
-        viewMode === "list" 
-          ? "w-full sm:w-48 sm:flex-shrink-0 h-48 sm:h-auto" 
+      <div className={`${viewMode === "list"
+          ? "w-full sm:w-48 sm:flex-shrink-0 h-48 sm:h-auto"
           : "mb-4 sm:mb-6"
-      } aspect-square rounded-lg overflow-hidden bg-muted relative`}>
+        } aspect-square rounded-lg overflow-hidden bg-muted relative`}>
         <img
           src={product.image_url || "/placeholder.svg"}
           alt={product.name}
@@ -95,11 +93,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             (e.target as HTMLImageElement).src = "/placeholder.svg";
           }}
         />
-        
+
         {/* Category Badge */}
         {(product.categories?.name || product.category) && (
-          <Badge 
-            variant="secondary" 
+          <Badge
+            variant="secondary"
             className="absolute top-2 left-2 bg-background/90 backdrop-blur-sm text-xs"
           >
             {t(`shop.categories.${slugify(product.categories?.name || product.category || '')}` as any, { defaultValue: product.categories?.name || product.category })}
@@ -108,8 +106,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Options Available Badge */}
         {hasOptions && (
-          <Badge 
-            variant="default" 
+          <Badge
+            variant="default"
             className="absolute bottom-2 left-2 bg-primary/90 backdrop-blur-sm text-xs"
           >
             Options Available ( size /color )
@@ -118,11 +116,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Wishlist Button */}
         <button
-          className={`absolute top-2 right-2 p-2 rounded-full backdrop-blur-sm transition-colors z-10 ${
-            isWishlisted 
-              ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20' 
+          className={`absolute top-2 right-2 p-2 rounded-full backdrop-blur-sm transition-colors z-10 ${isWishlisted
+              ? 'bg-red-500/10 text-red-500 hover:bg-red-500/20'
               : 'bg-background/60 text-muted-foreground hover:bg-background/80 hover:text-primary'
-          }`}
+            }`}
           onClick={(e) => {
             e.stopPropagation();
             toggleWishlist(product.id);
@@ -134,15 +131,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         {/* Rating - Hidden on small screens */}
         <div className="absolute top-2 right-12 hidden sm:flex items-center gap-1 bg-background/90 backdrop-blur-sm rounded-full px-2 py-1">
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star 
-              key={star} 
-              className="h-3 w-3 fill-yellow-400 text-yellow-400" 
+            <Star
+              key={star}
+              className="h-3 w-3 fill-yellow-400 text-yellow-400"
             />
           ))}
           <span className="text-xs text-muted-foreground ml-1">(4.8)</span>
         </div>
       </div>
-      
+
       {/* Product Details */}
       <div className="flex-1 min-w-0">
         <div className="mb-3">
@@ -150,30 +147,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             {product.name}
           </h3>
         </div>
-        
+
         {product.description && (
           <p className="text-muted-foreground mb-4 text-sm line-clamp-2">
             {product.description}
           </p>
         )}
-        
+
         {/* Price and Actions */}
         <div className="flex flex-col gap-3">
           <div className="flex flex-col">
             <span className="text-xl sm:text-2xl font-bold text-gradient">
               {formatPrice(product.price)}
             </span>
-              {product.unit && (
-                <span className="text-xs text-muted-foreground">
-                  {t('shop.perUnit', { unit: product.unit })}
-                </span>
-              )}
+            {product.unit && (
+              <span className="text-xs text-muted-foreground">
+                {t('shop.perUnit', { unit: product.unit })}
+              </span>
+            )}
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-2">
-            {onViewDetails && (
-              <GlassButton 
-                variant="outline" 
+            {onViewDetails && !hasOptions && (
+              <GlassButton
+                variant="outline"
                 size="sm"
                 onClick={onViewDetails}
                 className="whitespace-nowrap min-h-[44px] sm:min-h-auto"
@@ -185,15 +182,15 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 <span className="sm:hidden">{t('shop.productCard.viewShort')}</span>
               </GlassButton>
             )}
-            <GlassButton 
-              variant="default" 
+            <GlassButton
+              variant="default"
               size="sm"
               onClick={handleAddToCart}
               className="whitespace-nowrap min-h-[44px] sm:min-h-auto"
             >
               <ShoppingCart className="h-4 w-4 mr-2" />
               <span className="hidden sm:inline">
-                {hasOptions 
+                {hasOptions
                   ? (viewMode === 'list' ? t('shop.productCard.viewDetailsLong') : t('shop.productCard.viewShort'))
                   : (viewMode === 'list' ? t('shop.productCard.addToCartLong') : t('shop.productCard.addShort'))
                 }
@@ -204,18 +201,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </GlassButton>
           </div>
         </div>
-        
+
         {/* Rating for mobile - shown below actions */}
         <div className="flex sm:hidden items-center gap-1 mt-3 text-xs text-muted-foreground">
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star 
-              key={star} 
-              className="h-3 w-3 fill-yellow-400 text-yellow-400" 
+            <Star
+              key={star}
+              className="h-3 w-3 fill-yellow-400 text-yellow-400"
             />
           ))}
           <span className="ml-1">(4.8)</span>
         </div>
-        
+
         {/* Additional Info for List View */}
         {viewMode === 'list' && (
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-4 text-xs text-muted-foreground">

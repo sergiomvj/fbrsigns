@@ -11,12 +11,12 @@
       "label": "Years Experience"
     },
     "clients": {
-      "value": "2,500+", 
+      "value": "2,500+",
       "label": "Happy Clients"
     },
     "projects": {
       "value": "10,000+",
-      "label": "Projects Completed"  
+      "label": "Projects Completed"
     },
     "success": {
       "value": "99%",
@@ -31,7 +31,7 @@
       "description": "We use only the highest quality materials to ensure your signage lasts for years to come."
     },
     "fastTurnaround": {
-      "title": "Fast Turnaround Times", 
+      "title": "Fast Turnaround Times",
       "description": "Quick production and delivery without compromising on quality. Most projects completed within 5-7 business days."
     },
     "customDesign": {
@@ -49,27 +49,30 @@
     "customSigns": {
       "name": "Custom Business Signs",
       "description": "Professional storefront signage that makes your business stand out",
-      "price": "Starting at $299"
+      "price": "Starting at $299",
+      "details": "Premium custom signage solutions tailored to your brand identity. Available in various materials including aluminum, acrylic, and wood."
     },
     "digitalLED": {
-      "name": "Digital LED Displays", 
+      "name": "Digital LED Displays",
       "description": "Modern digital signage for dynamic content and maximum impact",
-      "price": "Starting at $899"
+      "price": "Starting at $899",
+      "details": "High-visibility LED displays perfect for indoor and outdoor advertising. Energy efficient and fully programmable."
     },
     "vehicleWraps": {
       "name": "Vehicle Wraps",
-      "description": "Transform your vehicle into a mobile billboard for your business", 
-      "price": "Starting at $1,299"
+      "description": "Transform your vehicle into a mobile billboard for your business",
+      "price": "Starting at $1,299",
+      "details": "Transform your vehicle into a mobile billboard with our high-quality vinyl wraps. Professional installation included."
     },
     "tradeShow": {
       "name": "Trade Show Displays",
       "description": "Portable, professional displays that attract attention at events",
-      "price": "Starting at $489"
+      "price": "Starting at $489",
+      "details": "Portable and impactful trade show displays, banners, and booths designed to attract attention at events."
     },
     "viewDetails": "View Details",
     "viewAllProducts": "View All Products"
   },
-
   "contact": {
     "title": "Get In Touch",
     "subtitle": "Ready to transform your vision into reality? Contact us today for a free consultation and let's discuss your signage needs.",
@@ -84,7 +87,7 @@
       },
       "email": {
         "title": "Email Us",
-        "action": "Send Email"  
+        "action": "Send Email"
       },
       "hours": {
         "title": "Business Hours",
@@ -96,7 +99,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email Address",
-      "phone": "Phone Number", 
+      "phone": "Phone Number",
       "company": "Company Name",
       "serviceType": "Service Needed",
       "budget": "Budget Range",
@@ -110,7 +113,7 @@
       "whyVisit": "Why Visit Our Showroom?",
       "reasons": {
         "materials": "See material samples and quality up close",
-        "portfolio": "View completed projects and portfolio", 
+        "portfolio": "View completed projects and portfolio",
         "consultation": "Meet our design team for consultation",
         "pricing": "Get instant pricing and project timelines"
       }
@@ -133,20 +136,20 @@
       "startingPrice": "$199",
       "features": [
         "Custom Logo Design",
-        "Brand Identity Development", 
+        "Brand Identity Development",
         "Layout & Mockup Creation",
         "Color Scheme Consultation"
       ],
       "process": [
         "Initial Consultation",
-        "Concept Development", 
+        "Concept Development",
         "Design Refinement",
         "Final Approval"
       ],
       "timeline": "3-5 business days"
     },
     "production": {
-      "title": "Production Services", 
+      "title": "Production Services",
       "description": "State-of-the-art printing and fabrication using premium materials and cutting-edge technology.",
       "startingPrice": "$299",
       "features": [
@@ -256,7 +259,7 @@
       "description": "Eye-catching digital displays that capture attention and drive foot traffic"
     },
     "illuminatedSigns": {
-      "title": "Illuminated Signs", 
+      "title": "Illuminated Signs",
       "description": "Bright, professional lighting solutions that make your business visible 24/7"
     },
     "vehicleWraps": {
@@ -315,7 +318,7 @@
         },
         {
           "name": "Mike Rodriguez",
-          "role": "Creative Director", 
+          "role": "Creative Director",
           "bio": "Mike brings innovative design thinking and ensures every project exceeds expectations.",
           "image": "/placeholder.svg"
         },
@@ -384,7 +387,7 @@
     },
     "client2": {
       "name": "Mike Chen",
-      "company": "Retail Store Manager", 
+      "company": "Retail Store Manager",
       "quote": "The digital LED sign has been a game-changer for our promotions. The quality and service exceeded our expectations."
     },
     "client3": {
@@ -416,7 +419,11 @@
         "category": "Business Signs",
         "client": "Bella Vista Restaurant",
         "description": "Complete signage package including storefront sign, menu boards, and interior wayfinding.",
-        "tags": ["LED", "Acrylic", "Interior Design"],
+        "tags": [
+          "LED",
+          "Acrylic",
+          "Interior Design"
+        ],
         "year": "2024"
       },
       {
@@ -424,7 +431,11 @@
         "category": "Digital Displays",
         "client": "Tech Solutions Inc",
         "description": "Large-format LED display for high-traffic advertising with dynamic content management.",
-        "tags": ["LED", "Digital", "High-Traffic"],
+        "tags": [
+          "LED",
+          "Digital",
+          "High-Traffic"
+        ],
         "year": "2024"
       },
       {
@@ -432,7 +443,11 @@
         "category": "Vehicle Wraps",
         "client": "Green Clean Services",
         "description": "Complete fleet branding with eye-catching vehicle wraps for 12 service vehicles.",
-        "tags": ["Fleet", "Branding", "Vinyl"],
+        "tags": [
+          "Fleet",
+          "Branding",
+          "Vinyl"
+        ],
         "year": "2023"
       },
       {
@@ -440,7 +455,11 @@
         "category": "Trade Shows",
         "client": "Innovation Expo 2024",
         "description": "Modular trade show display system with integrated lighting and interactive elements.",
-        "tags": ["Modular", "Interactive", "Portable"],
+        "tags": [
+          "Modular",
+          "Interactive",
+          "Portable"
+        ],
         "year": "2024"
       },
       {
@@ -448,7 +467,11 @@
         "category": "Interior Signage",
         "client": "Atlantic Financial Group",
         "description": "Professional interior signage suite including lobby display, directional signs, and room identification.",
-        "tags": ["Corporate", "Wayfinding", "Professional"],
+        "tags": [
+          "Corporate",
+          "Wayfinding",
+          "Professional"
+        ],
         "year": "2023"
       },
       {
@@ -456,7 +479,11 @@
         "category": "Outdoor Advertising",
         "client": "Riverside Shopping Plaza",
         "description": "Large-scale directory sign with illuminated tenant panels and map integration.",
-        "tags": ["Directory", "Illuminated", "Large-Scale"],
+        "tags": [
+          "Directory",
+          "Illuminated",
+          "Large-Scale"
+        ],
         "year": "2024"
       },
       {
@@ -464,7 +491,11 @@
         "category": "Interior Signage",
         "client": "Sunrise Medical Center",
         "description": "Comprehensive wayfinding system with ADA-compliant signage throughout the facility.",
-        "tags": ["ADA Compliant", "Healthcare", "Wayfinding"],
+        "tags": [
+          "ADA Compliant",
+          "Healthcare",
+          "Wayfinding"
+        ],
         "year": "2023"
       },
       {
@@ -472,7 +503,11 @@
         "category": "Business Signs",
         "client": "Premier Properties",
         "description": "Monument signs, directional signage, and sales center displays for luxury development.",
-        "tags": ["Monument", "Luxury", "Development"],
+        "tags": [
+          "Monument",
+          "Luxury",
+          "Development"
+        ],
         "year": "2024"
       }
     ],
@@ -645,7 +680,7 @@
     "categories": {
       "business_signs": "Business Signs",
       "digital_displays": "Digital Displays",
-      "vehicle_wraps": "Vehicle Wraps",  
+      "vehicle_wraps": "Vehicle Wraps",
       "trade_shows": "Trade Shows",
       "interior_signage": "Interior Signage",
       "outdoor_advertising": "Outdoor Advertising"
@@ -672,7 +707,22 @@
       "dimensions": "Dimensions",
       "technicalSpecs": "Technical Specifications",
       "defaultInstallationInfo": "Installation information will be provided with the product. Our technical team is available for complete support.",
-      "defaultWarrantyInfo": "This product comes with quality warranty and technical support. Contact us for more information about our warranty policy."
+      "defaultWarrantyInfo": "This product comes with quality warranty and technical support. Contact us for more information about our warranty policy.",
+      "notFound": {
+        "title": "Product Not Found",
+        "description": "The product you are looking for does not exist.",
+        "backButton": "Back to Products"
+      },
+      "features": {
+        "premiumQuality": "Premium Quality",
+        "warrantyIncluded": "Warranty Included",
+        "fastTurnaround": "Fast Turnaround",
+        "professionalInstall": "Professional Install"
+      },
+      "actions": {
+        "getQuote": "Get a Quote",
+        "contactUs": "Contact Us"
+      }
     },
     "cart": {
       "title": "Your Cart ({{count}} item)",
@@ -762,5 +812,60 @@
       "paypalEmail": "PayPal Email Address",
       "paypalRedirect": "You will be redirected to PayPal to complete your payment securely."
     }
+  },
+  "cookiePolicy": {
+    "title": "Cookie Policy",
+    "content": "We use cookies and similar technologies to maintain security, enable site functionality, and improve our site. We also use cookies and similar technologies for marketing purposes and to provide personalized content and advertising. You can reject all non-strictly necessary cookies by clicking the corresponding button. You may also choose to customize your cookie settings. By pressing “Accept All Cookies” or continuing to use this site you agree to ourPrivacy Policy (except to the extent you have opted out of certain cookies) and our Terms of Use"
+  },
+  "returnRefundPolicy": {
+    "title": "Return & Refund Policy",
+    "lastUpdated": "Last Updated: January 26, 2026",
+    "intro": "At FBRSIGNS.com, customer satisfaction is very important to us. This Return & Refund Policy explains the conditions under which returns, exchanges, and refunds are accepted.",
+    "sections": [
+      {
+        "title": "1. Customized & Personalized Products",
+        "content": "Due to the nature of customized and made-to-order products: All customized or personalized products are non-refundable and non-returnable. This includes products made according to customer specifications such as size, color, design, text, or materials. Exceptions: A refund or replacement may be offered if: The product arrives damaged, The product has a manufacturing defect, or The delivered product does not match the approved order specifications. Claims must be submitted within 7 days of delivery, with photos or videos clearly showing the issue."
+      },
+      {
+        "title": "2. Non-Customized (Standard) Products",
+        "content": "Non-customized products may be eligible for return if: The item is unused and in original condition. The return request is made within 14 days of delivery. Once approved, the product must be returned in original packaging."
+      },
+      {
+        "title": "3. Consumer Rights – Brazil & European Union",
+        "content": "If you are located in Brazil or the European Union, you may be entitled to mandatory consumer rights under local law. Brazil (CDC – Right of Withdrawal): Customers may cancel a purchase within 7 days of receipt, except for customized or personalized products. European Union (Consumer Rights Directive): Customers may withdraw from a distance purchase within 14 days, except for custom-made or personalized goods. These legal rights are not affected by this Policy."
+      },
+      {
+        "title": "4. Return Process",
+        "content": "To request a return or refund: Contact us at support@fbrsigns.com. Provide your order number and reason for the request. Attach photos or videos if the product is defective or damaged. Returns sent without prior authorization may not be accepted."
+      },
+      {
+        "title": "5. Return Shipping Costs",
+        "content": "Customers are responsible for return shipping costs unless the product is defective or incorrect. Shipping fees are non-refundable. We recommend using a trackable shipping method."
+      },
+      {
+        "title": "6. Refunds",
+        "content": "Once the returned product is received and inspected: Approved refunds will be issued to the original payment method. Refunds are processed within 5–10 business days, depending on the payment provider. Bank or card processing times may vary."
+      },
+      {
+        "title": "7. Exchanges",
+        "content": "We may offer exchanges for defective or damaged items, subject to availability. Customized products may be remade or replaced, but not refunded, unless legally required."
+      },
+      {
+        "title": "8. Non-Returnable Items",
+        "content": "The following items are non-returnable: Customized or personalized products. Items damaged due to misuse or improper installation. Items returned without original packaging."
+      },
+      {
+        "title": "9. Order Cancellations",
+        "content": "Orders may be canceled only before production begins. Once production has started, cancellations are not possible for customized items."
+      },
+      {
+        "title": "10. International Orders",
+        "content": "International customers are responsible for: Customs duties and import taxes. Return shipping costs for international returns. FBRSIGNS.com is not responsible for delays caused by customs clearance."
+      },
+      {
+        "title": "11. Contact Us",
+        "content": "If you have questions about this Return & Refund Policy, please contact us: Email: support@fbrsigns.com. Website: https://www.fbrsigns.com"
+      }
+    ]
   }
 }

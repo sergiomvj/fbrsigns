@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Search, Grid, List, Loader2 } from "lucide-react";
+import { Search, Grid, List, Loader2, Menu } from "lucide-react";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GlassButton } from "@/components/ui/glass-button";
@@ -101,7 +101,20 @@ export default function Products({ onProductSelect, useLayout = true }: Products
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      return data;
+
+      if (!data || data.length <= 1) return data;
+
+      // Keep the newest (first) item, randomize the rest
+      const newest = data[0];
+      const rest = data.slice(1);
+
+      // Fisher-Yates shuffle
+      for (let i = rest.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [rest[i], rest[j]] = [rest[j], rest[i]];
+      }
+
+      return [newest, ...rest];
     }
   });
 
@@ -119,29 +132,31 @@ export default function Products({ onProductSelect, useLayout = true }: Products
   const content = (
     <section className="py-16 sm:py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Search Hero */}
-        <div className="relative max-w-2xl mx-auto mb-12">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-6 w-6 text-muted-foreground" />
-            <Input
-              placeholder={t('shop.searchPlaceholder')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12 h-14 text-lg glass-input rounded-full shadow-lg"
-            />
-          </div>
-        </div>
+        {/* Search & Category Hero */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <div className="flex gap-3 sm:gap-4 items-center">
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 sm:h-6 sm:w-6 text-muted-foreground" />
+              <Input
+                placeholder={t('shop.searchPlaceholder')}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 h-14 text-base sm:text-lg glass-input rounded-2xl shadow-lg w-full"
+              />
+            </div>
 
-        {/* Filters */}
-        <GlassCard className="mb-8 sm:mb-12">
-          <div className="flex flex-col lg:flex-row gap-6">
-
-
-            {/* Category Filter - Mobile Dropdown */}
-            <div className="block sm:hidden">
+            {/* Category Dropdown */}
+            <div className="shrink-0">
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder={t('shop.selectCategory')} />
+                <SelectTrigger className="h-14 w-14 sm:w-[240px] px-0 sm:px-4 justify-center sm:justify-between glass-input border-glass-neutral/20 rounded-2xl shadow-lg [&>span]:line-clamp-1">
+                  {/* Mobile Icon */}
+                  <Menu className="h-6 w-6 sm:hidden text-foreground" />
+
+                  {/* Desktop Text */}
+                  <span className="hidden sm:block truncate">
+                    <SelectValue placeholder={t('shop.selectCategory')} />
+                  </span>
                 </SelectTrigger>
                 <SelectContent className="z-50 bg-background/95 backdrop-blur-xl border border-border shadow-glass">
                   {categories.map((category: any) => (
@@ -152,21 +167,17 @@ export default function Products({ onProductSelect, useLayout = true }: Products
                 </SelectContent>
               </Select>
             </div>
+          </div>
+        </div>
 
-            {/* Category Filter - Desktop Buttons */}
-            <div className="hidden sm:flex flex-wrap gap-2">
-              {categories.map((category: any) => (
-                <GlassButton
-                  key={category.id || category.name}
-                  variant={selectedCategory === category.name ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.name)}
-                  disabled={isLoading}
-                >
-                  {getCategoryLabel(category.name)}
-                </GlassButton>
-              ))}
-            </div>
+        {/* Filters */}
+        <GlassCard className="mb-8 sm:mb-12">
+          <div className="flex flex-col lg:flex-row gap-6">
+
+
+
+
+
 
             {/* View Mode */}
             <div className="flex gap-2">

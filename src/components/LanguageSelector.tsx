@@ -23,14 +23,15 @@ export const LanguageSelector = () => {
   };
 
   // Ensure we match the language code correctly (e.g. 'en-US' -> 'en')
-  const currentLangCode = i18n.language?.split('-')[0] || 'en';
+  // Use resolvedLanguage as it's more reliable after detection
+  const currentLangCode = (i18n.resolvedLanguage || i18n.language || 'en').split('-')[0];
   const currentLanguage = languages.find(lang => lang.code === currentLangCode) || languages[0];
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           size="sm"
           className="gap-1 px-2 text-foreground/80 hover:text-foreground hover:bg-accent/10"
         >
@@ -38,7 +39,8 @@ export const LanguageSelector = () => {
           <span className="hidden sm:inline text-xs font-medium ml-1">{currentLanguage.code.toUpperCase()}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-48">
+      {/* Increased z-index to 60 to ensure it appears above the navbar (z-50) */}
+      <DropdownMenuContent align="end" className="w-48 z-[60]">
         {languages.map((language) => (
           <DropdownMenuItem
             key={language.code}

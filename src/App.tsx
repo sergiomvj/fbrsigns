@@ -15,6 +15,8 @@ import NotFound from "./pages/NotFound";
 import EcommercePage from "./pages/EcommercePage";
 import QuoteRequest from "./pages/QuoteRequest";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import ReturnRefundPolicy from "./pages/ReturnRefundPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import Wishlist from "./pages/Wishlist";
@@ -39,6 +41,8 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/quote-request" element={<QuoteRequest />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/return-refund-policy" element={<ReturnRefundPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/dashboard" element={<CustomerDashboard />} />
             <Route path="/wishlist" element={<Wishlist />} />
