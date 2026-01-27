@@ -24,6 +24,9 @@ interface Product {
   };
   has_sizes?: boolean;
   has_colors?: boolean;
+  product_variants?: {
+    image_url: string | null;
+  }[];
 }
 
 interface ProductCardProps {
@@ -55,8 +58,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     if (product.additional_images && Array.isArray(product.additional_images)) {
       images.push(...product.additional_images);
     }
-    return images.length > 0 ? images : ['/placeholder.svg'];
-  }, [product.image_url, product.additional_images]);
+
+    // Add variant images
+    if (product.product_variants && Array.isArray(product.product_variants)) {
+      const variantImages = product.product_variants
+        .map(v => v.image_url)
+        .filter((url): url is string => !!url);
+      images.push(...variantImages);
+    }
+
+    const uniqueImages = Array.from(new Set(images.filter(Boolean)));
+    return uniqueImages.length > 0 ? uniqueImages : ['/placeholder.svg'];
+  }, [product.image_url, product.additional_images, product.product_variants]);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % allImages.length);

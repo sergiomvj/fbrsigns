@@ -96,6 +96,9 @@ export default function Products({ onProductSelect, useLayout = true }: Products
             name,
             has_sizes,
             has_colors
+          ),
+          product_variants (
+            image_url
           )
         `)
         .order('created_at', { ascending: false });
