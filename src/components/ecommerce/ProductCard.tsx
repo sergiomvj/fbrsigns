@@ -43,6 +43,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
+  console.log('ProductCard debug:', {
+    id: product.id,
+    additional_images: product.additional_images,
+    isArray: Array.isArray(product.additional_images)
+  });
+
   const allImages = React.useMemo(() => {
     const images = [];
     if (product.image_url) images.push(product.image_url);

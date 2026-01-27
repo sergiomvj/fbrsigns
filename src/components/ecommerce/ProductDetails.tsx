@@ -58,6 +58,14 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
   const { t, i18n } = useTranslation('content');
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  console.log('ProductDetails debug:', {
+    id: product.id,
+    name: product.name,
+    additional_images: product.additional_images,
+    type: typeof product.additional_images,
+    isArray: Array.isArray(product.additional_images)
+  });
+
   const isWishlisted = isInWishlist(product.id);
   const [quantity, setQuantity] = useState(product.min_quantity || 1);
   const [selectedSize, setSelectedSize] = useState<string>("");
@@ -71,7 +79,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
           .from('product_variants')
           .select('*')
           .eq('product_id', product.id);
-        
+
         if (data) {
           setVariants(data);
         }
@@ -82,13 +90,13 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
 
   const availableSizes = Array.from(new Set(variants.filter(v => v.size).map(v => v.size)));
   const availableColors = Array.from(new Set(variants.filter(v => v.color).map(v => v.color)));
-  
-  const selectedVariant = variants.find(v => 
-    (!v.size || v.size === selectedSize) && 
+
+  const selectedVariant = variants.find(v =>
+    (!v.size || v.size === selectedSize) &&
     (!v.color || v.color === selectedColor)
   );
 
-  const currentPrice = selectedVariant 
+  const currentPrice = selectedVariant
     ? Number(product.price) + Number(selectedVariant.additional_price || 0)
     : Number(product.price);
 
@@ -132,8 +140,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
     <PageLayout>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
-        <Button 
-          variant="ghost" 
+        <Button
+          variant="ghost"
           onClick={onBack}
           className="mb-6 hover:bg-muted/50"
         >
@@ -154,18 +162,17 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                 }}
               />
             </GlassCard>
-            
+
             {allImages.length > 1 && (
               <div className="grid grid-cols-4 gap-2">
                 {allImages.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
-                    className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                      index === selectedImageIndex 
-                        ? 'border-primary shadow-glow' 
+                    className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${index === selectedImageIndex
+                        ? 'border-primary shadow-glow'
                         : 'border-border/50 hover:border-primary/50'
-                    }`}
+                      }`}
                   >
                     <img
                       src={image}
@@ -190,21 +197,21 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                 )}
                 <div className="flex items-center gap-1">
                   {[1, 2, 3, 4, 5].map((star) => (
-                    <Star 
-                      key={star} 
-                      className="h-4 w-4 fill-yellow-400 text-yellow-400" 
+                    <Star
+                      key={star}
+                      className="h-4 w-4 fill-yellow-400 text-yellow-400"
                     />
                   ))}
                   <span className="text-sm text-muted-foreground ml-2">(4.8)</span>
                 </div>
               </div>
-              
+
               <h1 className="text-3xl lg:text-4xl font-bold mb-4">{product.name}</h1>
-              
+
               <p className="text-lg text-muted-foreground mb-6">
                 {product.description || product.detailed_description}
               </p>
-              
+
               <div className="flex items-baseline gap-2 mb-6">
                 <span className="text-4xl font-bold text-gradient">
                   {formatPrice(product.price)}
@@ -227,17 +234,17 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                   </SelectTrigger>
                   <SelectContent>
                     {availableSizes.length > 0 ? (
-                        availableSizes.map((size) => (
-                          <SelectItem key={size} value={size}>
-                            {size}
-                          </SelectItem>
-                        ))
-                    ) : (
-                        ["S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
+                      availableSizes.map((size) => (
                         <SelectItem key={size} value={size}>
-                            {size}
+                          {size}
                         </SelectItem>
-                        ))
+                      ))
+                    ) : (
+                      ["S", "M", "L", "XL", "2XL", "3XL"].map((size) => (
+                        <SelectItem key={size} value={size}>
+                          {size}
+                        </SelectItem>
+                      ))
                     )}
                   </SelectContent>
                 </Select>
@@ -287,7 +294,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                   </Button>
                 </div>
               </div>
-              
+
               {(product.min_quantity || product.max_quantity) && (
                 <p className="text-xs text-muted-foreground">
                   {product.min_quantity && `${t('shop.productDetails.min')}: ${product.min_quantity}`}
@@ -299,8 +306,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
 
             {/* Add to Cart and Wishlist */}
             <div className="flex gap-4">
-              <GlassButton 
-                className="flex-1" 
+              <GlassButton
+                className="flex-1"
                 size="lg"
                 onClick={handleAddToCart}
               >
@@ -345,15 +352,15 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
               <TabsTrigger value="installation">{t('shop.productDetails.tabs.installation')}</TabsTrigger>
               <TabsTrigger value="warranty">{t('shop.productDetails.tabs.warranty')}</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="description" className="mt-6">
               <GlassCard className="p-6">
                 <div className="prose prose-invert max-w-none">
                   <p className="text-muted-foreground leading-relaxed">
-                    {product.detailed_description || product.description || 
-                     t('shop.productDetails.noDescription')}
+                    {product.detailed_description || product.description ||
+                      t('shop.productDetails.noDescription')}
                   </p>
-                  
+
                   {isWearCategory && (
                     <div className="mt-8 pt-8 border-t border-white/10">
                       <h3 className="text-lg font-semibold mb-4">Size Chart – Next Level 6210 (Unisex)</h3>
@@ -390,7 +397,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                 </div>
               </GlassCard>
             </TabsContent>
-            
+
             <TabsContent value="specifications" className="mt-6">
               <GlassCard className="p-6">
                 <div className="grid md:grid-cols-2 gap-6">
@@ -400,14 +407,14 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                       <p className="text-muted-foreground">{product.material}</p>
                     </div>
                   )}
-                  
+
                   {product.dimensions && (
                     <div>
                       <h4 className="font-semibold mb-2">{t('shop.productDetails.dimensions')}</h4>
                       <p className="text-muted-foreground">{product.dimensions}</p>
                     </div>
                   )}
-                  
+
                   {product.specifications && Object.keys(product.specifications).length > 0 && (
                     <div className="md:col-span-2">
                       <h4 className="font-semibold mb-4">{t('shop.productDetails.technicalSpecs')}</h4>
@@ -424,24 +431,24 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                 </div>
               </GlassCard>
             </TabsContent>
-            
+
             <TabsContent value="installation" className="mt-6">
               <GlassCard className="p-6">
                 <div className="prose prose-invert max-w-none">
                   <p className="text-muted-foreground leading-relaxed">
-                    {product.installation_info || 
-                     t('shop.productDetails.defaultInstallationInfo')}
+                    {product.installation_info ||
+                      t('shop.productDetails.defaultInstallationInfo')}
                   </p>
                 </div>
               </GlassCard>
             </TabsContent>
-            
+
             <TabsContent value="warranty" className="mt-6">
               <GlassCard className="p-6">
                 <div className="prose prose-invert max-w-none">
                   <p className="text-muted-foreground leading-relaxed">
-                    {product.warranty_info || 
-                     t('shop.productDetails.defaultWarrantyInfo')}
+                    {product.warranty_info ||
+                      t('shop.productDetails.defaultWarrantyInfo')}
                   </p>
                 </div>
               </GlassCard>
