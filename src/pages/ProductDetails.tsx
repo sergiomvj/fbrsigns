@@ -98,14 +98,7 @@ export default function ProductDetails() {
         async function fetchProduct() {
             setLoading(true);
 
-            // 1. Check if it's a featured hardcoded product
-            if (id && featuredMap[id]) {
-                setProduct(featuredMap[id]);
-                setLoading(false);
-                return;
-            }
-
-            // 2. Otherwise try to fetch from Supabase
+            // 1. Try to fetch from Supabase first
             try {
                 const { data, error } = await supabase
                     .from('products')
@@ -115,16 +108,23 @@ export default function ProductDetails() {
 
                 if (data) {
                     setProduct(data);
-                } else {
-                    // If not found in DB, we might want to show not found or just null
-                    console.log("Product not found in DB");
+                    setLoading(false);
+                    return;
                 }
             } catch (error) {
                 console.error("Error fetching product:", error);
-            } finally {
-                setLoading(false);
             }
+
+            // 2. If not found in DB, check hardcoded featured products
+            if (id && featuredMap[id]) {
+                setProduct(featuredMap[id]);
+                setLoading(false);
+                return;
+            }
+
+            setLoading(false);
         }
+
 
         fetchProduct();
     }, [id, t]);

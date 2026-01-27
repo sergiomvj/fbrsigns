@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ArrowLeft, ShoppingCart, Star, Info, Truck, Shield, Award, Heart } from 'lucide-react';
 import { useCart } from '@/hooks/useCart';
 import { useWishlist } from '@/hooks/useWishlist';
@@ -107,10 +107,31 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
 
   const isWearCategory = product.category?.toLowerCase().includes("wear") || product.category?.toLowerCase().includes("signature") || variants.some(v => v.size);
 
-  const allImages = [
-    product.image_url || "/placeholder.svg",
-    ...(product.additional_images || [])
-  ].filter(Boolean);
+  const allImages = useMemo(() => {
+    const images: string[] = [];
+
+    if (selectedVariant?.image_url) {
+      images.push(selectedVariant.image_url);
+    }
+
+    if (product.image_url) {
+      images.push(product.image_url);
+    }
+
+    if (product.additional_images) {
+      images.push(...product.additional_images);
+    }
+
+    const unique = Array.from(new Set(images.filter(Boolean)));
+    return unique.length > 0 ? unique : ["/placeholder.svg"];
+  }, [product, selectedVariant]);
+
+  useEffect(() => {
+    // Reset to first image (variant image) when variant changes and has specific image
+    if (selectedVariant?.image_url) {
+      setSelectedImageIndex(0);
+    }
+  }, [selectedVariant]);
 
   const handleAddToCart = () => {
     if (isWearCategory && !selectedSize) {
@@ -126,7 +147,7 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
       id: isWearCategory ? `${product.id}-${selectedSize}` : product.id,
       name: isWearCategory ? `${product.name} (${selectedSize})` : product.name,
       price: product.price,
-      image_url: product.image_url,
+      image_url: selectedVariant?.image_url || product.image_url,
       unit: product.unit,
       size: isWearCategory ? selectedSize : undefined
     };
@@ -170,8 +191,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
                     className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${index === selectedImageIndex
-                        ? 'border-primary shadow-glow'
-                        : 'border-border/50 hover:border-primary/50'
+                      ? 'border-primary shadow-glow'
+                      : 'border-border/50 hover:border-primary/50'
                       }`}
                   >
                     <img
