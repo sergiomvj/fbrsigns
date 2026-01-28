@@ -142,7 +142,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 e.stopPropagation();
                 prevImage();
               }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-100 hover:bg-black/70 z-20"
+              aria-label="Previous image"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -151,7 +152,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70 z-20"
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-100 hover:bg-black/70 z-20"
+              aria-label="Next image"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
