@@ -70,7 +70,14 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, onChe
                         <h4 className="font-medium text-sm leading-tight mb-2 truncate">
                           {item.name}
                         </h4>
-                        
+
+                        {(item.size || item.color) && (
+                          <div className="flex flex-wrap gap-2 mb-2 text-xs text-muted-foreground">
+                            {item.size && <span className="bg-secondary/50 px-1.5 py-0.5 rounded">Size: {item.size}</span>}
+                            {item.color && <span className="bg-secondary/50 px-1.5 py-0.5 rounded">Color: {item.color}</span>}
+                          </div>
+                        )}
+
                         <div className="flex items-center justify-between">
                           <span className="text-lg font-bold text-gradient">
                             {formatPrice(item.price)}
@@ -93,11 +100,11 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, onChe
                             >
                               <Minus className="h-3 w-3" />
                             </GlassButton>
-                            
+
                             <span className="w-8 text-center text-sm font-medium">
                               {item.quantity}
                             </span>
-                            
+
                             <GlassButton
                               size="sm"
                               variant="outline"
@@ -138,24 +145,24 @@ export const CartSidebar: React.FC<CartSidebarProps> = ({ isOpen, onClose, onChe
                 </div>
 
                 <div className="space-y-3">
-                  <GlassButton 
-                    className="w-full" 
+                  <GlassButton
+                    className="w-full"
                     onClick={onCheckout}
                     size="lg"
                   >
                     {t('shop.cart.checkout')}
                   </GlassButton>
-                  
+
                   <div className="flex gap-2">
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       onClick={onClose}
                       className="flex-1"
                     >
                       {t('shop.cart.continueShopping')}
                     </Button>
-                    <Button 
-                      variant="destructive" 
+                    <Button
+                      variant="destructive"
                       onClick={clearCart}
                       className="px-4"
                     >

@@ -156,12 +156,13 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
     }
 
     const itemToAdd = {
-      id: isWearCategory ? `${product.id}-${selectedSize}` : product.id,
-      name: isWearCategory ? `${product.name} (${selectedSize})` : product.name,
-      price: product.price,
-      image_url: selectedVariant?.image_url || product.image_url,
+      id: `${product.id}${selectedSize ? `-${selectedSize}` : ''}${selectedColor ? `-${selectedColor}` : ''}`,
+      name: `${product.name}${selectedSize ? ` (${selectedSize})` : ''}${selectedColor ? ` - ${selectedColor}` : ''}`,
+      price: currentPrice,
+      image_url: imageVariant?.image_url || product.image_url,
       unit: product.unit,
-      size: isWearCategory ? selectedSize : undefined
+      size: selectedSize || undefined,
+      color: selectedColor || undefined
     };
 
     for (let i = 0; i < quantity; i++) {

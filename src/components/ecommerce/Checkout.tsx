@@ -172,7 +172,15 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
             <div className="space-y-4">
               {state.items.map(item => (
                 <div key={item.id} className="flex gap-3">
-                  <div className="flex-1"><p className="text-sm font-medium">{item.name}</p><p className="text-xs text-muted-foreground">{item.quantity}x {formatPrice(item.price)}</p></div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">{item.name}</p>
+                    {(item.size || item.color) && (
+                      <p className="text-xs text-muted-foreground">
+                        {[item.size && `Size: ${item.size}`, item.color && `Color: ${item.color}`].filter(Boolean).join(' | ')}
+                      </p>
+                    )}
+                    <p className="text-xs text-muted-foreground mt-1">{item.quantity}x {formatPrice(item.price)}</p>
+                  </div>
                   <div className="text-sm font-medium">{formatPrice(item.price * item.quantity)}</div>
                 </div>
               ))}

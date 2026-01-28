@@ -9,6 +9,7 @@ interface CartItem {
   image_url?: string;
   unit?: string;
   size?: string;
+  color?: string;
 }
 
 interface CartState {
@@ -46,7 +47,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM': {
       const existingItem = state.items.find(item => item.id === action.payload.id);
-      
+
       if (existingItem) {
         const updatedItems = state.items.map(item =>
           item.id === action.payload.id
@@ -60,7 +61,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
           itemCount: calculateItemCount(updatedItems)
         };
       }
-      
+
       const newItems = [...state.items, { ...action.payload, quantity: 1 }];
       return {
         ...state,
@@ -69,7 +70,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         itemCount: calculateItemCount(newItems)
       };
     }
-    
+
     case 'REMOVE_ITEM': {
       const newItems = state.items.filter(item => item.id !== action.payload);
       return {
@@ -79,10 +80,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         itemCount: calculateItemCount(newItems)
       };
     }
-    
+
     case 'UPDATE_QUANTITY': {
       const { id, quantity } = action.payload;
-      
+
       if (quantity <= 0) {
         const newItems = state.items.filter(item => item.id !== id);
         return {
@@ -92,11 +93,11 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
           itemCount: calculateItemCount(newItems)
         };
       }
-      
+
       const updatedItems = state.items.map(item =>
         item.id === id ? { ...item, quantity } : item
       );
-      
+
       return {
         ...state,
         items: updatedItems,
@@ -104,21 +105,21 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         itemCount: calculateItemCount(updatedItems)
       };
     }
-    
+
     case 'CLEAR_CART':
       return {
         items: [],
         total: 0,
         itemCount: 0
       };
-    
+
     case 'LOAD_CART':
       return {
         items: action.payload,
         total: calculateTotal(action.payload),
         itemCount: calculateItemCount(action.payload)
       };
-    
+
     default:
       return state;
   }
