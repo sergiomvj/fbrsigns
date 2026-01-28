@@ -96,6 +96,17 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
     (!v.color || v.color === selectedColor)
   );
 
+  // Logic to find variant for image display:
+  // 1. If exact match (Size + Color), use it.
+  // 2. If only color is selected, find *any* variant with that color to show the image.
+  const imageVariant = useMemo(() => {
+    if (selectedVariant) return selectedVariant;
+    if (selectedColor) {
+      return variants.find(v => v.color === selectedColor && v.image_url);
+    }
+    return null;
+  }, [selectedVariant, selectedColor, variants]);
+
   const currentPrice = selectedVariant
     ? Number(product.price) + Number(selectedVariant.additional_price || 0)
     : Number(product.price);
@@ -110,8 +121,9 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
   const allImages = useMemo(() => {
     const images: string[] = [];
 
-    if (selectedVariant?.image_url) {
-      images.push(selectedVariant.image_url);
+    // Prioritize image from the resolved "image variant" (can be exact match or just color match)
+    if (imageVariant?.image_url) {
+      images.push(imageVariant.image_url);
     }
 
     if (product.image_url) {
@@ -124,14 +136,14 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
 
     const unique = Array.from(new Set(images.filter(Boolean)));
     return unique.length > 0 ? unique : ["/placeholder.svg"];
-  }, [product, selectedVariant]);
+  }, [product, imageVariant]);
 
   useEffect(() => {
     // Reset to first image (variant image) when variant changes and has specific image
-    if (selectedVariant?.image_url) {
+    if (imageVariant?.image_url) {
       setSelectedImageIndex(0);
     }
-  }, [selectedVariant]);
+  }, [imageVariant]);
 
   const handleAddToCart = () => {
     if (isWearCategory && !selectedSize) {
