@@ -155,6 +155,15 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product, onBack 
       return;
     }
 
+    if (availableColors.length > 0 && !selectedColor) {
+      toast({
+        title: t('shop.productDetails.selectColor') || "Please select a color",
+        description: t('shop.productDetails.colorRequired') || "You must select a color to continue.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const itemToAdd = {
       id: `${product.id}${selectedSize ? `-${selectedSize}` : ''}${selectedColor ? `-${selectedColor}` : ''}`,
       name: `${product.name}${selectedSize ? ` (${selectedSize})` : ''}${selectedColor ? ` - ${selectedColor}` : ''}`,
