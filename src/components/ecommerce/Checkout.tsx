@@ -83,11 +83,19 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
   };
 
   // Convert cart items to Stripe format
-  const checkoutItems = state.items.map(item => ({
-    name: item.name,
-    amount: Math.round(item.price * 100),
-    quantity: item.quantity
-  }));
+  const taxAmount = state.total * 0.065;
+  const checkoutItems = [
+    ...state.items.map(item => ({
+      name: item.name,
+      amount: Math.round(item.price * 100),
+      quantity: item.quantity
+    })),
+    {
+      name: 'Tax (6.5%)',
+      amount: Math.round(taxAmount * 100),
+      quantity: 1
+    }
+  ];
 
   if (state.items.length === 0) {
     return <div className="text-center py-20">{t('shop.checkout.emptyCart')}</div>;
@@ -185,8 +193,19 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                 </div>
               ))}
             </div>
-            <div className="border-t border-border/50 pt-4 mt-6">
-              <div className="flex justify-between font-bold text-lg"><span>{t('shop.checkout.total')}:</span><span className="text-gradient">{formatPrice(state.total)}</span></div>
+            <div className="border-t border-border/50 pt-4 mt-6 space-y-2">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">{t('shop.checkout.subtotal') || 'Subtotal'}:</span>
+                <span>{formatPrice(state.total)}</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">{t('shop.checkout.tax') || 'Tax'} (6.5%):</span>
+                <span>{formatPrice(state.total * 0.065)}</span>
+              </div>
+              <div className="flex justify-between font-bold text-lg pt-2 border-t border-border/50">
+                <span>{t('shop.checkout.total')}:</span>
+                <span className="text-gradient">{formatPrice(state.total * 1.065)}</span>
+              </div>
             </div>
           </GlassCard>
         </div>
