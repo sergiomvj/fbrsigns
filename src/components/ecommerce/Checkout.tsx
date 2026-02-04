@@ -84,17 +84,19 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
 
   // Convert cart items to Stripe format
   const taxAmount = state.total * 0.065;
+  const taxItem = {
+    name: 'Tax',
+    amount: Math.round(taxAmount * 100),
+    quantity: 1
+  };
+
   const checkoutItems = [
     ...state.items.map(item => ({
       name: item.name,
       amount: Math.round(item.price * 100),
       quantity: item.quantity
     })),
-    {
-      name: 'Tax (6.5%)',
-      amount: Math.round(taxAmount * 100),
-      quantity: 1
-    }
+    ...(taxItem.amount > 0 ? [taxItem] : [])
   ];
 
   if (state.items.length === 0) {
@@ -161,7 +163,9 @@ export const Checkout: React.FC<CheckoutProps> = ({ onBack, onSuccess }) => {
                   buttonText={t('shop.checkout.placeOrder')}
                   metadata={{
                     notes: form.getValues('notes'),
-                    shipping_address: JSON.stringify(form.getValues())
+                    shipping_address: JSON.stringify(form.getValues()),
+                    tax_amount_cents: taxItem.amount,
+                    tax_rate: '6.5%'
                   }}
                   className="w-full h-12 text-lg font-semibold"
                 />
