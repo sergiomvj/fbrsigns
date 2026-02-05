@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ShoppingCart, User, Heart } from "lucide-react";
+import { Menu, X, ShoppingCart, User, Heart, LogOut, LayoutDashboard } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useTranslation } from "react-i18next";
 import { GlassButton } from "@/components/ui/glass-button";
 import { Button } from "@/components/ui/button";
@@ -168,12 +174,29 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
 
             {/* Login Button / Dashboard */}
             {user ? (
-              <Link to="/dashboard">
-                <GlassButton variant="outline" size="sm">
-                  <User className="h-4 w-4 mr-2" />
-                  My FBRSigns
-                </GlassButton>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <GlassButton variant="outline" size="sm" className="gap-2">
+                    <User className="h-4 w-4" />
+                    <span className="hidden sm:inline">My FBRSigns</span>
+                  </GlassButton>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48 bg-white/90 backdrop-blur-md border-white/20">
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <Link to="/dashboard" className="flex items-center w-full">
+                      <LayoutDashboard className="mr-2 h-4 w-4" />
+                      <span>Client Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="text-red-600 cursor-pointer focus:text-red-600"
+                    onClick={() => supabase.auth.signOut()}
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Sign Out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <LoginDialog>
                 <GlassButton variant="outline" size="sm">
@@ -292,12 +315,24 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
 
               {/* Mobile Login / Dashboard */}
               {user ? (
-                <Link to="/dashboard" onClick={() => setIsOpen(false)}>
-                  <GlassButton variant="outline" className="w-full" size="lg">
-                    <User className="h-4 w-4 mr-2" />
-                    My FBRSigns
+                  <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+                    <GlassButton variant="outline" className="w-full justify-start" size="lg">
+                      <LayoutDashboard className="h-4 w-4 mr-2" />
+                      Client Dashboard
+                    </GlassButton>
+                  </Link>
+                  <GlassButton 
+                    variant="outline" 
+                    className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50" 
+                    size="lg"
+                    onClick={() => {
+                      supabase.auth.signOut();
+                      setIsOpen(false);
+                    }}
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
                   </GlassButton>
-                </Link>
               ) : (
                 <LoginDialog>
                   <GlassButton variant="outline" className="w-full" size="lg">
