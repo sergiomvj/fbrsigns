@@ -315,15 +315,16 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
 
               {/* Mobile Login / Dashboard */}
               {user ? (
+                <>
                   <Link to="/dashboard" onClick={() => setIsOpen(false)}>
                     <GlassButton variant="outline" className="w-full justify-start" size="lg">
                       <LayoutDashboard className="h-4 w-4 mr-2" />
                       Client Dashboard
                     </GlassButton>
                   </Link>
-                  <GlassButton 
-                    variant="outline" 
-                    className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50" 
+                  <GlassButton
+                    variant="outline"
+                    className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
                     size="lg"
                     onClick={() => {
                       supabase.auth.signOut();
@@ -333,6 +334,7 @@ export const GlassNavbar: React.FC<GlassNavbarProps> = ({ onCartOpen }) => {
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
                   </GlassButton>
+                </>
               ) : (
                 <LoginDialog>
                   <GlassButton variant="outline" className="w-full" size="lg">
