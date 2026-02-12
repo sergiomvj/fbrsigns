@@ -1,0 +1,115 @@
+name: '🎯 Tarefa FBR'
+description: 'Criar uma nova tarefa para os projetos FBR'
+title: '[TIPO] Título da tarefa'
+labels: []
+body:
+  - type: dropdown
+    id: projeto
+    attributes:
+      label: '📁 Projeto'
+      description: 'Qual projeto esta tarefa pertence?'
+      options:
+        - 📰 facebrasil (Portal de notícias)
+        - 🛒 fbrsigns (E-commerce)
+        - 🏗️ builder (VCM)
+        - ✍️ blogger (Automação WP)
+        - 📈 fbrseo (SEO Tools)
+        - 🎬 video-portal (Vídeos)
+        - 🎮 control-tower (Gestão)
+        - 📊 trends (Análise)
+        - 🥩 carnitrack (Nutrição)
+        - 🌍 lifeway (Imigração)
+        - 🎨 creator2 (Criador)
+        - 📹 videocreator (Vídeos)
+        - ✈️ magictrip (Viagens)
+        - 📺 youtuber (YouTube)
+        - 🎓 lifewayusa-academy (Cursos)
+        - 🏭 fbrsigns-hub (Admin)
+        - 🌿 plantscan (Plantas)
+        - 🔨 reformai (Reformas)
+        - 💚 supabasealive (Monitor)
+        - 🔗 arva (Links)
+        - ⏰ meutdah (Agenda)
+        - 💓 timeheart (Saúde)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: assignee
+    attributes:
+      label: '👤 Assignee'
+      description: 'Quem vai executar esta tarefa?'
+      options:
+        - 🦁 Leon (Delegar para o assistente AI)
+        - 👤 Sergio (Executar manualmente)
+        - 🤝 Ambos (Colaboração)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: prioridade
+    attributes:
+      label: '🔥 Prioridade'
+      description: 'Qual a urgência desta tarefa?'
+      options:
+        - 🔴 Critical (Bloqueante, resolver urgente)
+        - 🟠 High (Importante, fazer essa semana)
+        - 🟡 Medium (Normal, próximas semanas)
+        - 🟢 Low (Quando tiver tempo)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: esforco
+    attributes:
+      label: '⚡ Esforço'
+      description: 'Quanto tempo/complexidade?'
+      options:
+        - 🐛 xsmall (Bug rápido, < 30min)
+        - 🔧 small (Tarefa simples, 1-2h)
+        - 📦 medium (Feature normal, 1-2 dias)
+        - 🏗️ large (Feature complexa, 3-5 dias)
+        - 🚀 xlarge (Épico, +1 semana)
+    validations:
+      required: true
+
+  - type: textarea
+    id: descricao
+    attributes:
+      label: '📝 Descrição'
+      description: 'Descreva o que precisa ser feito'
+      placeholder: |
+        Contexto:
+        - [Descreva o problema ou necessidade]
+        
+        Objetivo:
+        - [O que precisa ser alcançado]
+        
+        Critérios de aceitação:
+        - [ ] Item 1
+        - [ ] Item 2
+        - [ ] Item 3
+    validations:
+      required: true
+
+  - type: textarea
+    id: notas
+    attributes:
+      label: '📌 Notas técnicas (opcional)'
+      description: 'Links, referências, detalhes técnicos'
+      placeholder: |
+        - Link do PRD: 
+        - Referência de código:
+        - Dependências:
+        - Riscos:
+
+  - type: checkboxes
+    id: definicao
+    attributes:
+      label: '✅ Definição de pronto'
+      description: 'Marque quando concluir'
+      options:
+        - label: 'Código implementado'
+        - label: 'Testado localmente'
+        - label: 'Documentado'
+        - label: 'Deploy em produção'
